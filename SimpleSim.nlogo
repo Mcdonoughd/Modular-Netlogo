@@ -1,19 +1,24 @@
+;Global Variables that all Breeds can see
 globals [
   hives-list
   gl-nectar1    ; these gl-nectars are for ease of use in beharior space
   gl-nectar2
 ]
 
+;Defined Breeds [pural singular]
 breed [seeds seed]
 breed [bees bee]
 breed [flowers flower]
 breed [hives hive]
 
+;attributes of all breeds
 turtles-own [
-  species
-  age
+  species ;specify the type of breed
+  age ;
   nectar
 ]
+
+;attributes of Bees
 bees-own [
   hive-location
   chosen-flower
@@ -21,90 +26,119 @@ bees-own [
   destination
   home-hive
   pollen-color
-  busy
+  busy                     ;is-busy boolean
   collection-start-time
   current-flower
 ]
-seeds-own [lifespan nectar-regeneration start-of-bloom]
-flowers-own [flower-seeds flower-block lifespan nectar-regeneration start-of-bloom]
+
+;attributes of Seeds
+seeds-own [
+  lifespan
+  nectar-regeneration
+  start-of-bloom
+]
+
+;attributes of flowers
+flowers-own [
+  flower-seeds
+  flower-block
+  lifespan
+  nectar-regeneration
+  start-of-bloom
+]
+
+;patches attributes
 patches-own [has-seed?]
 hives-own []
 
+;On set setup button press
 to setup
-  clear-all
-  reset-ticks
-  setup-patches
-  make-seeds
-  make-hives
-  make-bees
+  clear-all ;clear-all objects
+  reset-ticks ;reset tickes
+  setup-patches ;set patch color and has seed to false
+  make-seeds ;place seeds
+  make-hives ;place hives
+  make-bees ;make bees
 end
 
+;function to set hives on initialization
 to make-hives
-  let i 1
+  ;for loop to place hives
+  let i 1 ;i determines type of the hive
   repeat number-of-hives [
     create-hives 1 [
       setxy random-xcor random-ycor
       set size 5
       set shape "beehive"
-      ifelse i = 2 [set color yellow] [set color orange]
+      ifelse i = 2 [set color yellow] [set color orange] ;if i = 2 then hive is yellow otherwise orange
       set nectar 0
-      set species i              ;
+      set species i              ;set species # to i
     ]
     set i i + 1
   ]
 end
 
+;function to make changes to patches
 to setup-patches
   ask patches [
-    set pcolor green - 3
-    set has-seed? FALSE
+    set pcolor green - 3  ;set the color of the patch
+    set has-seed? FALSE ;set has-seed to false
   ]
 end
 
+
+;go button press function
 to go
-  if (ticks + 1) mod 5000 = 0 [new-season]
-  flowers-bloom
-  make-nectar
+  if (ticks + 1) mod 5000 = 0 [new-season] ;if the next tick is divisible by 5000 set change the season
+  flowers-bloom ;bloom flowers
+  make-nectar ;make nectar
+
+  ;if bees havent chosen a flower, choose oen
   ask bees [
   if chosen-flower = NOBODY [
   choose-flower
   ]]
-  move-bees
-  collect-nectar
-  bees-go-back-to-hive
-  make-new-bees
-  flowers-breed
-  bees-grow
-  tick
+
+
+  move-bees   ;move the bees
+  collect-nectar ;collect nectar
+  bees-go-back-to-hive ;have bees go back to hive
+  make-new-bees ;make a new bee
+  flowers-breed ;make new flowers
+  bees-grow ;bees grow
+  tick ;set a new tick
 end
 
+;change to new season
 to new-season
   show "got to new season"
-  ask flowers[die]
-  ask bees [die]
-  setup-patches
-  make-seeds
-  make-new-bees
+  ask flowers[die] ;kill all flowers
+  ask bees [die] ;kill all bees
+  setup-patches ;set up patches
+  make-seeds ;make new seeds
+  make-new-bees ;make bees in respect to nector
   show (word "global nectar values " gl-nectar1 " "  gl-nectar2)
 end
 
+;have bees choose a flower
 to choose-flower
-  let temp-flower previous-flower
-  let flower-list flowers in-cone 5 150 with [self != temp-flower]
-  if any? flower-list
+  let temp-flower previous-flower ;save previous flower into a temp variable
+  let flower-list flowers in-cone 5 150 with [self != temp-flower] ;let flower list be equivilent to the list of flowers in the bee's line of site not including the previous flower
+  if any? flower-list ;if there are any flowers in that list
   [
-    let species-seen sort remove-duplicates [species] of flower-list
-    let best-species 0
-    foreach species-seen [i -> if prob-species i > prob-species best-species
-      [set best-species i]]
-    let best-flower one-of (flower-list with [species = best-species])
-    set destination best-flower
-    set chosen-flower best-flower
+    let species-seen sort remove-duplicates [species] of flower-list ;remove the duplicates in the list
+    let best-species 0 ;reset bee's favorite species
+    foreach species-seen [i -> if prob-species i > prob-species best-species [set best-species i]]
+    let best-flower one-of (flower-list with [species = best-species]) ;let the best flower of the bee be the best on in the flower list
+    set destination best-flower ;go in the direction to the best flower
+    set chosen-flower best-flower ;set chosen flower to the bestone
 
   ]
 end
 
+;get the prefured species per bee type
 to-report prob-species [spnum]
+  ;for species 1
   if species = 1 [
   if spnum = 0 [report 0]
   if spnum = 1 [report Bee1-Sp1-Pinene]
@@ -112,6 +146,7 @@ to-report prob-species [spnum]
   if spnum = 3 [report Bee1-Sp3-Ocimene]
   if spnum = 4 [report Bee1-Sp4-Benzaldehyde]
   ]
+  ;for species 2
   if species = 2 [
    if spnum = 0 [report 0]
   if spnum = 1 [report Bee2-Sp1-Pinene]
@@ -119,12 +154,21 @@ to-report prob-species [spnum]
   if spnum = 3 [report Bee2-Sp3-Ocimene]
   if spnum = 4 [report Bee2-Sp4-Benzaldehyde]
   ]
+  ;fixed bug on 3 hives
+  if species = 3 [
+  if spnum = 0 [report 0]
+  if spnum = 1 [report Bee1-Sp1-Pinene]
+  if spnum = 2 [report Bee1-Sp2-Limonene]
+  if spnum = 3 [report Bee1-Sp3-Ocimene]
+  if spnum = 4 [report Bee1-Sp4-Benzaldehyde]
+  ]
 end
 
-
+;make seeds for each type of flower
 to make-seeds
+  ;for random number of flower 1...
   ask n-of number-of-sp1 patches with [has-seed? = FALSE]
-    [
+    [;plant a seed
     sprout-seeds 1 [
       set color white
       set size 1
@@ -136,8 +180,9 @@ to make-seeds
     ]
     set has-seed? TRUE
   ]
+  ;for random number of flower 2...
    ask n-of number-of-sp2 patches with [has-seed? = FALSE]
-  [
+  [;plant a seed
     sprout-seeds 1 [
       set color red
       set size 1
@@ -148,9 +193,9 @@ to make-seeds
       set start-of-bloom start-of-bloom-sp2
     ]
     set has-seed? TRUE
-  ]
+  ];for random number of flower 3...
   ask n-of number-of-sp3 patches with [has-seed? = FALSE]
-  [
+  [;plant a seed
     sprout-seeds 1 [
       set color cyan
       set size 1
@@ -161,9 +206,9 @@ to make-seeds
       set start-of-bloom start-of-bloom-sp3
     ]
     set has-seed? TRUE
-  ]
+  ];for random number of flower 4...
   ask n-of number-of-sp4 patches with [has-seed? = FALSE]
-  [
+  [;plant a seed
     sprout-seeds 1 [
       set color green
       set size 1
@@ -177,15 +222,18 @@ to make-seeds
   ]
 end
 
+;set a seed to bloom if the next tick is in the correct season
 to flowers-bloom
   ask seeds [
     if (ticks + 1) mod 5000 > start-of-bloom
-     [if random 1000 < 7
+     [if random 1000 < 7 ;randomly have the flower bloom 7/1000 chance
         [hatch-a-flower
-         die]
+         die;kill the seed
+        ]
       ]
   ]
 end
+
 
 to hatch-a-flower  ;this is a seeds routine
   hatch-flowers 1
@@ -198,7 +246,7 @@ to hatch-a-flower  ;this is a seeds routine
 end  ; end hatch-a-flower
 
 
-
+;have flower produce nectar and increase age
 to make-nectar
   ask flowers [
     set age age + 1
@@ -208,6 +256,7 @@ to make-nectar
   ]
 end
 
+;collect nectar from the chosen flower
 to collect-nectar
   ask bees [
     if chosen-flower != NOBODY [
@@ -215,6 +264,7 @@ to collect-nectar
         move-to chosen-flower
 
         set nectar nectar + [nectar] of chosen-flower
+        ;set the flower nectar to 0 and check if blocked
         ask chosen-flower [
           set nectar 0
           ifelse color = [pollen-color] of myself
@@ -230,6 +280,7 @@ to collect-nectar
   ]
 end
 
+;have the bees move back to the hive when collecting enought nectar
 to bees-go-back-to-hive
   ask bees [
     if nectar > 200 [
@@ -241,6 +292,7 @@ to bees-go-back-to-hive
   ]
 end
 
+;NOT USED FUNCTION
 to bees-return-to-hive
   ask bees [
     if nectar > 200 [
@@ -250,6 +302,7 @@ to bees-return-to-hive
   ]
 end
 
+;make bees
 to make-bees
   ask hives [
     hatch-bees number-of-bees [
@@ -267,9 +320,11 @@ to make-bees
   ]
 end
 
+;make new bees in relation to the amount of nectar collected
 to make-new-bees
   ask hives [
     if species = 1 [set gl-nectar1 nectar]
+    if species = 3 [set gl-nectar1 nectar]
     if species = 2 [set gl-nectar2 nectar]
     while [nectar > 2500 and ticks mod 5000 < 4000] [
       set nectar nectar - 2500
@@ -290,24 +345,25 @@ to make-new-bees
   ]
 end
 
-
+;bee movement
 to move-bees
     ask bees [
-      ifelse destination = NOBODY [right (60 - random 120)]
-      [face destination]
+      ifelse destination = NOBODY [right (60 - random 120)] ;random movement if no flower is chosen
+      [face destination] ;move towards chosen flower
       forward 1
   ]
 end
 
+;check if flowers should die
 to flowers-breed
   ask flowers [
     if age > lifespan
       [die
       ]
-
   ]
 end
 
+;bees grow and
 to bees-grow
   let life 1000
   ask bees [
@@ -339,8 +395,8 @@ GRAPHICS-WINDOW
 30
 -30
 30
-1
-1
+0
+0
 1
 ticks
 30.0
@@ -446,7 +502,7 @@ number-of-hives
 number-of-hives
 1
 3
-2.0
+3.0
 1
 1
 NIL
@@ -1331,7 +1387,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0.2
+NetLogo 6.0.4
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
