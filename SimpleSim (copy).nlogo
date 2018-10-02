@@ -303,7 +303,7 @@ end
 ;make bees
 to make-bees
   ask hives [
-    hatch-bees starting-number-of-bees [
+    hatch-bees number-of-bees [
       set home-hive myself
       set size 1
       set shape "bee"
@@ -450,13 +450,13 @@ HORIZONTAL
 SLIDER
 14
 100
-293
+157
 133
-starting-number-of-bees
-starting-number-of-bees
+number-of-bees
+number-of-bees
 1
 30
-8.0
+7.0
 1
 1
 NIL
@@ -480,10 +480,10 @@ NIL
 1
 
 SWITCH
-441
-462
-575
-495
+160
+100
+294
+133
 show-energy?
 show-energy?
 1

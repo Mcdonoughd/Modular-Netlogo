@@ -223,12 +223,10 @@ end
 ;set a seed to bloom if the next tick is in the correct season
 to flowers-bloom
   ask seeds [
-    if (ticks + 1) mod 5000 > start-of-bloom
-     [if random 1000 < 7 ;randomly have the flower bloom 7/1000 chance
+     if random 1000 < 7 ;randomly have the flower bloom 7/1000 chance
         [hatch-a-flower
          die;kill the seed
         ]
-      ]
   ]
 end
 
@@ -303,7 +301,7 @@ end
 ;make bees
 to make-bees
   ask hives [
-    hatch-bees starting-number-of-bees [
+    hatch-bees number-of-bees [
       set home-hive myself
       set size 1
       set shape "bee"
@@ -450,13 +448,13 @@ HORIZONTAL
 SLIDER
 14
 100
-293
+157
 133
-starting-number-of-bees
-starting-number-of-bees
+number-of-bees
+number-of-bees
 1
 30
-8.0
+7.0
 1
 1
 NIL
@@ -480,10 +478,10 @@ NIL
 1
 
 SWITCH
-441
-462
-575
-495
+160
+100
+294
+133
 show-energy?
 show-energy?
 1
@@ -612,36 +610,6 @@ Benzaldehyde-nectar-regeneration
 10
 6.0
 1
-1
-NIL
-HORIZONTAL
-
-SLIDER
-755
-100
-972
-133
-start-of-bloom-Pinene
-start-of-bloom-Pinene
-0
-4000
-500.0
-100
-1
-NIL
-HORIZONTAL
-
-SLIDER
-993
-102
-1217
-135
-start-of-bloom-Limonene
-start-of-bloom-Limonene
-0
-4000
-1000.0
-50
 1
 NIL
 HORIZONTAL

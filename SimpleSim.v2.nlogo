@@ -1,31 +1,21 @@
-;SimpleSim v1.0.0 9/28/2018
-;This Simulation tests how two Species of Bees
-;interact with different flowers based on the Bee's preverences
-;The flowers also bloom over time
-;and produce relatively to the amount they have been pollonated
-
-
-;Global Variables that all Breeds can see
+;SimpleSim.v2 Added sliders for the in-cone length and angle -- seems to help make the bee travel paths appear more natural
+;             to have longer length and larger angle. (Liz Ryder)
 globals [
   hives-list
   gl-nectar1    ; these gl-nectars are for ease of use in beharior space
   gl-nectar2
 ]
 
-;Defined Breeds [pural singular]
 breed [seeds seed]
 breed [bees bee]
 breed [flowers flower]
 breed [hives hive]
 
-;attributes of all breeds
 turtles-own [
-  species ;specify the type of breed
-  age ;
+  species
+  age
   nectar
 ]
-
-;attributes of Bees
 bees-own [
   hive-location
   chosen-flower
@@ -33,205 +23,171 @@ bees-own [
   destination
   home-hive
   pollen-color
-  busy                     ;is-busy boolean
+  busy
   collection-start-time
   current-flower
 ]
-
-;attributes of Seeds
-seeds-own [
-  lifespan
-  nectar-regeneration
-  start-of-bloom
-]
-
-;attributes of flowers
-flowers-own [
-  flower-seeds
-  flower-block
-  lifespan
-  nectar-regeneration
-  start-of-bloom
-]
-
-;patches attributes
+seeds-own [lifespan nectar-regeneration start-of-bloom]
+flowers-own [flower-seeds flower-block lifespan nectar-regeneration start-of-bloom]
 patches-own [has-seed?]
 hives-own []
 
-;On set setup button press
 to setup
-  clear-all ;clear-all objects
-  reset-ticks ;reset tickes
-  setup-patches ;set patch color and has seed to false
-  make-seeds ;place seeds
-  make-hives ;place hives
-  make-bees ;make bees
+  clear-all
+  reset-ticks
+  setup-patches
+  make-seeds
+  make-hives
+  make-bees
 end
 
-;function to set hives on initialization
 to make-hives
-  ;for loop to place hives
-  let i 1 ;i determines type of the hive
-  repeat 2[
+  let i 1
+  repeat number-of-hives [
     create-hives 1 [
       setxy random-xcor random-ycor
       set size 5
       set shape "beehive"
-      ifelse i = 2 [set color yellow] [set color orange] ;if i = 2 then hive is yellow otherwise orange
+      ifelse i = 2 [set color yellow] [set color orange]
       set nectar 0
-      set species i              ;set species # to i
+      set species i              ;
     ]
     set i i + 1
   ]
 end
 
-;function to make changes to patches
 to setup-patches
   ask patches [
-    set pcolor green - 3  ;set the color of the patch
-    set has-seed? FALSE ;set has-seed to false
+    set pcolor green - 3
+    set has-seed? FALSE
   ]
 end
 
-
-;go button press function
 to go
-  if (ticks + 1) mod 5000 = 0 [new-season] ;if the next tick is divisible by 5000 set change the season
-  flowers-bloom ;bloom flowers
-  make-nectar ;make nectar
-  ;if bees havent chosen a flower, choose oen
+  if (ticks + 1) mod 5000 = 0 [new-season]
+  flowers-bloom
+  make-nectar
   ask bees [
   if chosen-flower = NOBODY [
   choose-flower
   ]]
-  move-bees   ;move the bees
-  collect-nectar ;collect nectar
-  bees-go-back-to-hive ;have bees go back to hive
-  make-new-bees ;make a new bee
-  flowers-breed ;make new flowers
-  bees-grow ;bees grow
-  tick ;set a new tick
+  move-bees
+  collect-nectar
+  bees-go-back-to-hive
+  make-new-bees
+  flowers-breed
+  bees-grow
+  tick
 end
 
-;change to new season
 to new-season
   show "got to new season"
-  ask flowers[die] ;kill all flowers
-  ask bees [die] ;kill all bees
-  setup-patches ;set up patches
-  make-seeds ;make new seeds
-  make-new-bees ;make bees in respect to nector
+  ask flowers[die]
+  ask bees [die]
+  setup-patches
+  make-seeds
+  make-new-bees
   show (word "global nectar values " gl-nectar1 " "  gl-nectar2)
 end
 
-;have bees choose a flower
 to choose-flower
-  let temp-flower previous-flower ;save previous flower into a temp variable
-  let flower-list flowers in-cone 5 150 with [self != temp-flower] ;let flower list be equivilent to the list of flowers in the bee's line of site not including the previous flower
-  if any? flower-list ;if there are any flowers in that list
+  let temp-flower previous-flower
+  let flower-list flowers in-cone cone-length cone-degrees with [self != temp-flower]   ;Liz added cone-length cone-degrees and sliders
+  if any? flower-list
   [
-    let species-seen sort remove-duplicates [species] of flower-list ;remove the duplicates in the list
-    let best-species 0 ;reset bee's favorite species
-    foreach species-seen [i -> if prob-species i > prob-species best-species [set best-species i]]
-    let best-flower one-of (flower-list with [species = best-species]) ;let the best flower of the bee be the best on in the flower list
-    set destination best-flower ;go in the direction to the best flower
-    set chosen-flower best-flower ;set chosen flower to the bestone
+    let species-seen sort remove-duplicates [species] of flower-list
+    let best-species 0
+    foreach species-seen [i -> if prob-species i > prob-species best-species
+      [set best-species i]]
+    let best-flower one-of (flower-list with [species = best-species])
+    set destination best-flower
+    set chosen-flower best-flower
 
   ]
 end
 
-;get the prefered species per bee type
 to-report prob-species [spnum]
-  ;for species 1
   if species = 1 [
   if spnum = 0 [report 0]
-  if spnum = 1 [report Bee1-Pref-Pinene]
-  if spnum = 2 [report Bee1-Pref-Limonene]
-  if spnum = 3 [report Bee1-Pref-Ocimene]
-  if spnum = 4 [report Bee1-Pref-Benzaldehyde]
+  if spnum = 1 [report Bee1-Sp1-Pinene]
+  if spnum = 2 [report Bee1-Sp2-Limonene]
+  if spnum = 3 [report Bee1-Sp3-Ocimene]
+  if spnum = 4 [report Bee1-Sp4-Benzaldehyde]
   ]
-  ;for species 2
   if species = 2 [
-  if spnum = 0 [report 0]
-  if spnum = 1 [report Bee2-Pref-Pinene]
-  if spnum = 2 [report Bee2-Pref-Limonene]
-  if spnum = 3 [report Bee2-Pref-Ocimene]
-  if spnum = 4 [report Bee2-Pref-Benzaldehyde]
+   if spnum = 0 [report 0]
+  if spnum = 1 [report Bee2-Sp1-Pinene]
+  if spnum = 2 [report Bee2-Sp2-Limonene]
+  if spnum = 3 [report Bee2-Sp3-Ocimene]
+  if spnum = 4 [report Bee2-Sp4-Benzaldehyde]
   ]
 end
 
-;make seeds for each type of flower
+
 to make-seeds
-  ;for random number between 0 and the specified seed count: plant Pinene seeds...
-  ask n-of number-of-Pinene patches with [has-seed? = FALSE]
-    [;plant a Pinene seed (white/yellow)
+  ask n-of number-of-sp1 patches with [has-seed? = FALSE]
+    [
     sprout-seeds 1 [
       set color white
       set size 1
       set species 1
       set shape "circle"
-      set lifespan lifespan-Pinene
-      set nectar-regeneration Pinene-nectar-regeneration
-      set start-of-bloom start-of-bloom-Pinene
+      set lifespan lifespan-sp1
+      set nectar-regeneration sp1-nectar-regeneration
+      set start-of-bloom start-of-bloom-sp1
     ]
     set has-seed? TRUE
   ]
-  ;for random number between 0 and the specified seed count: plant Limonene seeds...
-   ask n-of number-of-Limonene patches with [has-seed? = FALSE]
-  [;plant a Limonene seed (red)
+   ask n-of number-of-sp2 patches with [has-seed? = FALSE]
+  [
     sprout-seeds 1 [
       set color red
       set size 1
       set shape "circle"
       set species 2
-      set lifespan lifespan-Limonene
-      set nectar-regeneration Limonene-nectar-regeneration
-      set start-of-bloom start-of-bloom-Limonene
+      set lifespan lifespan-sp2
+      set nectar-regeneration sp2-nectar-regeneration
+      set start-of-bloom start-of-bloom-sp2
     ]
     set has-seed? TRUE
   ]
-   ;for random number between 0 and the specified seed count: plant Ocimene seeds...
-  ask n-of number-of-Ocimene patches with [has-seed? = FALSE]
-  [;plant a Ocimene seed (blue/cyan)
+  ask n-of number-of-sp3 patches with [has-seed? = FALSE]
+  [
     sprout-seeds 1 [
       set color cyan
       set size 1
       set species 3
       set shape "circle"
-      set lifespan lifespan-Ocimene
-      set nectar-regeneration Ocimene-nectar-regeneration
-      set start-of-bloom start-of-bloom-Ocimene
+      set lifespan lifespan-sp3
+      set nectar-regeneration sp3-nectar-regeneration
+      set start-of-bloom start-of-bloom-sp3
     ]
     set has-seed? TRUE
   ]
-  ;for random number between 0 and the specified seed count: plant Benzaldehyde seeds...
-  ask n-of number-of-Benzaldehyde patches with [has-seed? = FALSE]
-  [;plant a Benzaldehyde seed (green)
+  ask n-of number-of-sp4 patches with [has-seed? = FALSE]
+  [
     sprout-seeds 1 [
       set color green
       set size 1
       set species 4
       set shape "circle"
-      set lifespan lifespan-Benzaldehyde
-      set nectar-regeneration Benzaldehyde-nectar-regeneration
-      set start-of-bloom start-of-bloom-Benzaldehyde
+      set lifespan lifespan-sp4
+      set nectar-regeneration sp4-nectar-regeneration
+      set start-of-bloom start-of-bloom-sp4
     ]
     set has-seed? TRUE
   ]
 end
 
-;set a seed to bloom if the next tick is in the correct season
 to flowers-bloom
   ask seeds [
     if (ticks + 1) mod 5000 > start-of-bloom
-     [if random 1000 < 7 ;randomly have the flower bloom 7/1000 chance
+     [if random 1000 < 7
         [hatch-a-flower
-         die;kill the seed
-        ]
+         die]
       ]
   ]
 end
-
 
 to hatch-a-flower  ;this is a seeds routine
   hatch-flowers 1
@@ -244,7 +200,7 @@ to hatch-a-flower  ;this is a seeds routine
 end  ; end hatch-a-flower
 
 
-;have flower produce nectar and increase age
+
 to make-nectar
   ask flowers [
     set age age + 1
@@ -254,7 +210,6 @@ to make-nectar
   ]
 end
 
-;collect nectar from the chosen flower
 to collect-nectar
   ask bees [
     if chosen-flower != NOBODY [
@@ -262,7 +217,6 @@ to collect-nectar
         move-to chosen-flower
 
         set nectar nectar + [nectar] of chosen-flower
-        ;set the flower nectar to 0 and check if blocked
         ask chosen-flower [
           set nectar 0
           ifelse color = [pollen-color] of myself
@@ -278,7 +232,6 @@ to collect-nectar
   ]
 end
 
-;have the bees move back to the hive when collecting enought nectar
 to bees-go-back-to-hive
   ask bees [
     if nectar > 200 [
@@ -290,7 +243,6 @@ to bees-go-back-to-hive
   ]
 end
 
-;NOT USED FUNCTION
 to bees-return-to-hive
   ask bees [
     if nectar > 200 [
@@ -300,10 +252,9 @@ to bees-return-to-hive
   ]
 end
 
-;make bees
 to make-bees
   ask hives [
-    hatch-bees starting-number-of-bees [
+    hatch-bees number-of-bees [
       set home-hive myself
       set size 1
       set shape "bee"
@@ -314,11 +265,11 @@ to make-bees
       set destination NOBODY
       set pollen-color black
       set busy false
+      set heading random 360 ; liz added
     ]
   ]
 end
 
-;make new bees in relation to the amount of nectar collected
 to make-new-bees
   ask hives [
     if species = 1 [set gl-nectar1 nectar]
@@ -342,25 +293,24 @@ to make-new-bees
   ]
 end
 
-;bee movement
+
 to move-bees
     ask bees [
-      ifelse destination = NOBODY [right (60 - random 120)] ;random movement if no flower is chosen
-      [face destination] ;move towards chosen flower
+      ifelse destination = NOBODY [right (60 - random 120)]
+      [face destination]
       forward 1
   ]
 end
 
-;check if flowers should die
 to flowers-breed
   ask flowers [
     if age > lifespan
       [die
       ]
+
   ]
 end
 
-;bees grow and
 to bees-grow
   let life 1000
   ask bees [
@@ -372,13 +322,13 @@ to bees-grow
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
-302
-13
-748
-460
+192
+10
+653
+472
 -1
 -1
-7.18033
+7.43
 1
 10
 1
@@ -392,17 +342,17 @@ GRAPHICS-WINDOW
 30
 -30
 30
-0
-0
+1
+1
 1
 ticks
 30.0
 
 BUTTON
-20
-10
-104
-81
+15
+27
+90
+93
 NIL
 setup
 NIL
@@ -416,10 +366,10 @@ NIL
 1
 
 BUTTON
-118
-12
-199
-82
+106
+27
+187
+97
 NIL
 go
 T
@@ -433,12 +383,12 @@ NIL
 1
 
 SLIDER
-754
-31
-971
-64
-number-of-Pinene
-number-of-Pinene
+659
+105
+831
+138
+number-of-sp1
+number-of-sp1
 0
 100
 100.0
@@ -448,25 +398,25 @@ NIL
 HORIZONTAL
 
 SLIDER
-14
-100
-293
-133
-starting-number-of-bees
-starting-number-of-bees
+656
+56
+838
+89
+number-of-bees
+number-of-bees
 1
 30
-8.0
+7.0
 1
 1
 NIL
 HORIZONTAL
 
 BUTTON
-212
-13
-294
-82
+107
+110
+185
+179
 step
 go
 NIL
@@ -480,21 +430,36 @@ NIL
 1
 
 SWITCH
-441
-462
-575
-495
+769
+10
+903
+43
 show-energy?
 show-energy?
 1
 1
 -1000
 
+SLIDER
+855
+56
+1027
+89
+number-of-hives
+number-of-hives
+1
+3
+2.0
+1
+1
+NIL
+HORIZONTAL
+
 PLOT
-1237
-330
-1534
-480
+1066
+10
+1266
+160
 Flower Population
 Time
 Number of Flowers
@@ -506,18 +471,33 @@ true
 true
 "" ""
 PENS
-"Pinene" 1.0 0 -1184463 true "" "plot count flowers with [species = 1]"
-"Limonene" 1.0 0 -2674135 true "" "plot count flowers with [species = 2]"
-"Ocimene" 1.0 0 -11221820 true "" "plot count flowers with [species = 3]"
-"Benzaldehyde" 1.0 0 -10899396 true "" "plot count flowers with [species = 4]"
+"species 1" 1.0 0 -1184463 true "" "plot count flowers with [species = 1]"
+"species 2" 1.0 0 -2674135 true "" "plot count flowers with [species = 2]"
+"species 3" 1.0 0 -11221820 true "" "plot count flowers with [species = 3]"
+"species 4" 1.0 0 -10899396 true "" "plot count flowers with [species = 4]"
 
 SLIDER
-995
-31
-1215
-64
-number-of-Limonene
-number-of-Limonene
+657
+153
+829
+186
+number-of-sp2
+number-of-sp2
+0
+100
+99.0
+1
+1
+NIL
+HORIZONTAL
+
+SLIDER
+659
+238
+831
+271
+number-of-sp4
+number-of-sp4
 0
 100
 100.0
@@ -527,42 +507,27 @@ NIL
 HORIZONTAL
 
 SLIDER
-988
-228
-1232
-261
-number-of-Benzaldehyde
-number-of-Benzaldehyde
+658
+193
+830
+226
+number-of-sp3
+number-of-sp3
 0
 100
-100.0
+97.0
 1
 1
 NIL
 HORIZONTAL
 
 SLIDER
-754
-234
-969
-267
-number-of-Ocimene
-number-of-Ocimene
-0
-100
-100.0
-1
-1
-NIL
-HORIZONTAL
-
-SLIDER
-754
-65
-971
+855
 98
-Pinene-nectar-regeneration
-Pinene-nectar-regeneration
+1041
+131
+sp1-nectar-regeneration
+sp1-nectar-regeneration
 0
 10
 10.0
@@ -572,12 +537,12 @@ NIL
 HORIZONTAL
 
 SLIDER
-994
-66
-1216
-99
-Limonene-nectar-regeneration
-Limonene-nectar-regeneration
+858
+150
+1044
+183
+sp2-nectar-regeneration
+sp2-nectar-regeneration
 0
 10
 6.0
@@ -587,12 +552,12 @@ NIL
 HORIZONTAL
 
 SLIDER
-754
-268
-970
-301
-Ocimene-nectar-regeneration
-Ocimene-nectar-regeneration
+858
+195
+1044
+228
+sp3-nectar-regeneration
+sp3-nectar-regeneration
 0
 10
 6.0
@@ -602,12 +567,12 @@ NIL
 HORIZONTAL
 
 SLIDER
-988
-268
-1233
-301
-Benzaldehyde-nectar-regeneration
-Benzaldehyde-nectar-regeneration
+859
+244
+1045
+277
+sp4-nectar-regeneration
+sp4-nectar-regeneration
 0
 10
 6.0
@@ -617,72 +582,72 @@ NIL
 HORIZONTAL
 
 SLIDER
-755
-100
-972
-133
-start-of-bloom-Pinene
-start-of-bloom-Pinene
+667
+294
+839
+327
+start-of-bloom-sp1
+start-of-bloom-sp1
 0
 4000
-500.0
+0.0
 100
 1
 NIL
 HORIZONTAL
 
 SLIDER
-993
-102
-1217
-135
-start-of-bloom-Limonene
-start-of-bloom-Limonene
+668
+335
+840
+368
+start-of-bloom-sp2
+start-of-bloom-sp2
 0
 4000
-1000.0
+0.0
 50
 1
 NIL
 HORIZONTAL
 
 SLIDER
-753
-305
-971
-338
-start-of-bloom-Ocimene
-start-of-bloom-Ocimene
+669
+378
+841
+411
+start-of-bloom-sp3
+start-of-bloom-sp3
 0
 4000
-1500.0
+0.0
 100
 1
 NIL
 HORIZONTAL
 
 SLIDER
-985
-303
-1232
-336
-start-of-bloom-Benzaldehyde
-start-of-bloom-Benzaldehyde
+671
+420
+843
+453
+start-of-bloom-sp4
+start-of-bloom-sp4
 0
 4000
-2000.0
+0.0
 100
 1
 NIL
 HORIZONTAL
 
 SLIDER
-755
-135
-974
-168
-lifespan-Pinene
-lifespan-Pinene
+863
+291
+1035
+324
+lifespan-sp1
+lifespan-sp1
 0
 3000
 2000.0
@@ -692,12 +657,12 @@ NIL
 HORIZONTAL
 
 SLIDER
-995
-139
-1218
-172
-lifespan-Limonene
-lifespan-Limonene
+861
+334
+1033
+367
+lifespan-sp2
+lifespan-sp2
 0
 3000
 2000.0
@@ -707,12 +672,12 @@ NIL
 HORIZONTAL
 
 SLIDER
-754
-341
-972
-374
-lifespan-Ocimene
-lifespan-Ocimene
+861
+376
+1033
+409
+lifespan-sp3
+lifespan-sp3
 0
 3000
 2000.0
@@ -722,12 +687,12 @@ NIL
 HORIZONTAL
 
 SLIDER
-983
-338
-1231
-371
-lifespan-Benzaldehyde
-lifespan-Benzaldehyde
+863
+422
+1035
+455
+lifespan-sp4
+lifespan-sp4
 0
 3000
 2000.0
@@ -737,10 +702,10 @@ NIL
 HORIZONTAL
 
 PLOT
-1236
-170
-1533
-320
+1070
+163
+1270
+313
 Mean Flower Nectar Content
 time
 nectar
@@ -758,12 +723,12 @@ PENS
 "species 4" 1.0 0 -10899396 true "" "let fl4 flowers with [species = 4]\nifelse any? fl4 \n[plotxy ticks mean [nectar] of flowers with [species = 4]\nplot-pen-down]\n[plot-pen-up]"
 
 SLIDER
-13
-173
-294
-206
-Bee1-Pref-Pinene
-Bee1-Pref-Pinene
+16
+189
+188
+222
+Bee1-Sp1-Pinene
+Bee1-Sp1-Pinene
 0
 100
 82.0
@@ -773,12 +738,12 @@ NIL
 HORIZONTAL
 
 SLIDER
-11
-210
-293
-243
-Bee1-Pref-Limonene
-Bee1-Pref-Limonene
+16
+229
+188
+262
+Bee1-Sp2-Limonene
+Bee1-Sp2-Limonene
 0
 100
 64.0
@@ -788,27 +753,27 @@ NIL
 HORIZONTAL
 
 SLIDER
-14
-247
-294
-280
-Bee1-Pref-Ocimene
-Bee1-Pref-Ocimene
+17
+267
+189
+300
+Bee1-Sp3-Ocimene
+Bee1-Sp3-Ocimene
 0
 100
-36.0
+37.0
 1
 1
 NIL
 HORIZONTAL
 
 SLIDER
-13
-297
-292
-330
-Bee1-Pref-Benzaldehyde
-Bee1-Pref-Benzaldehyde
+16
+305
+188
+338
+Bee1-Sp4-Benzaldehyde
+Bee1-Sp4-Benzaldehyde
 0
 100
 20.0
@@ -818,10 +783,10 @@ NIL
 HORIZONTAL
 
 PLOT
-1237
-493
-1533
-643
+1066
+324
+1266
+474
 Bee Population
 Time
 Number of Bees
@@ -833,16 +798,16 @@ true
 true
 "" ""
 PENS
-"Bee Species 1" 1.0 0 -817084 true "" "plot count bees with [species =  1]"
-"Bee Species 2" 1.0 0 -1184463 true "" "plot count bees with [species = 2]"
+"species 1" 1.0 0 -817084 true "" "plot count bees with [species =  1]"
+"species 2" 1.0 0 -1184463 true "" "plot count bees with [species = 2]"
 
 SLIDER
-9
-377
-289
-410
-Bee2-Pref-Pinene
-Bee2-Pref-Pinene
+16
+343
+188
+376
+Bee2-Sp1-Pinene
+Bee2-Sp1-Pinene
 0
 100
 10.0
@@ -852,12 +817,12 @@ NIL
 HORIZONTAL
 
 SLIDER
-9
-416
-288
-449
-Bee2-Pref-Limonene
-Bee2-Pref-Limonene
+15
+382
+187
+415
+Bee2-Sp2-Limonene
+Bee2-Sp2-Limonene
 0
 100
 64.0
@@ -867,27 +832,27 @@ NIL
 HORIZONTAL
 
 SLIDER
-9
-455
-287
-488
-Bee2-Pref-Ocimene
-Bee2-Pref-Ocimene
+15
+420
+187
+453
+Bee2-Sp3-Ocimene
+Bee2-Sp3-Ocimene
 0
 100
-42.0
+41.0
 1
 1
 NIL
 HORIZONTAL
 
 SLIDER
-11
-494
-288
-527
-Bee2-Pref-Benzaldehyde
-Bee2-Pref-Benzaldehyde
+14
+457
+187
+490
+Bee2-Sp4-Benzaldehyde
+Bee2-Sp4-Benzaldehyde
 0
 100
 14.0
@@ -897,10 +862,10 @@ NIL
 HORIZONTAL
 
 PLOT
-1236
-10
-1532
-160
+1062
+478
+1262
+628
 nectar
 NIL
 NIL
@@ -915,65 +880,35 @@ PENS
 "hive 1" 1.0 0 -955883 true "" "plot mean [nectar] of hives with [species = 1]"
 "hive 2" 1.0 0 -1184463 true "" "plot mean [nectar] of hives with [species = 2]"
 
-TEXTBOX
-784
-10
-934
-28
-Pinene Flower Variables
-12
-0.0
+SLIDER
+200
+480
+372
+513
+cone-length
+cone-length
+0
+15
+12.0
 1
+1
+NIL
+HORIZONTAL
 
-TEXTBOX
-1022
-11
-1237
-41
-Limonene Flower Variables
-12
-0.0
+SLIDER
+410
+481
+582
+514
+cone-degrees
+cone-degrees
+0
+180
+145.0
+5
 1
-
-TEXTBOX
-778
-213
-953
-243
-Ocimene Flower Variables
-12
-0.0
-1
-
-TEXTBOX
-1011
-211
-1213
-241
-Benzaldehyde Flower Variables
-12
-0.0
-1
-
-TEXTBOX
-109
-145
-259
-163
-Bee 1 Variables
-12
-0.0
-1
-
-TEXTBOX
-99
-355
-249
-373
-Bee 2 Variables
-12
-0.0
-1
+NIL
+HORIZONTAL
 
 @#$#@#$#@
 ## WHAT IS IT?
@@ -1429,7 +1364,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0.4
+NetLogo 6.0.2
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
