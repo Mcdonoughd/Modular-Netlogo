@@ -4,8 +4,6 @@
 ;The flowers also bloom over time
 ;and produce relatively to the amount they have been pollonated
 
-;Note the relationship between the seeds and the flowers
-
 
 ;Global Variables that all Breeds can see
 globals [
@@ -42,14 +40,18 @@ bees-own [
 
 ;attributes of Seeds
 seeds-own [
+  lifespan
   nectar-regeneration
+  start-of-bloom
 ]
 
 ;attributes of flowers
 flowers-own [
   flower-seeds
   flower-block
+  lifespan
   nectar-regeneration
+  start-of-bloom
 ]
 
 ;patches attributes
@@ -94,6 +96,7 @@ end
 
 ;go button press function
 to go
+  if (ticks + 1) mod 5000 = 0 [new-season] ;if the next tick is divisible by 5000 set change the season
   flowers-bloom ;bloom flowers
   make-nectar ;make nectar
   ;if bees havent chosen a flower, choose oen
@@ -105,10 +108,21 @@ to go
   collect-nectar ;collect nectar
   bees-go-back-to-hive ;have bees go back to hive
   make-new-bees ;make a new bee
+  flowers-breed ;make new flowers
   bees-grow ;bees grow
   tick ;set a new tick
 end
 
+;change to new season
+to new-season
+  show "got to new season"
+  ask flowers[die] ;kill all flowers
+  ask bees [die] ;kill all bees
+  setup-patches ;set up patches
+  make-seeds ;make new seeds
+  make-new-bees ;make bees in respect to nector
+  show (word "global nectar values " gl-nectar1 " "  gl-nectar2)
+end
 
 ;have bees choose a flower
 to choose-flower
@@ -156,7 +170,9 @@ to make-seeds
       set size 1
       set species 1
       set shape "circle"
+      set lifespan lifespan-Pinene
       set nectar-regeneration Pinene-nectar-regeneration
+      set start-of-bloom start-of-bloom-Pinene
     ]
     set has-seed? TRUE
   ]
@@ -168,7 +184,9 @@ to make-seeds
       set size 1
       set shape "circle"
       set species 2
+      set lifespan lifespan-Limonene
       set nectar-regeneration Limonene-nectar-regeneration
+      set start-of-bloom start-of-bloom-Limonene
     ]
     set has-seed? TRUE
   ]
@@ -180,7 +198,9 @@ to make-seeds
       set size 1
       set species 3
       set shape "circle"
+      set lifespan lifespan-Ocimene
       set nectar-regeneration Ocimene-nectar-regeneration
+      set start-of-bloom start-of-bloom-Ocimene
     ]
     set has-seed? TRUE
   ]
@@ -192,7 +212,9 @@ to make-seeds
       set size 1
       set species 4
       set shape "circle"
+      set lifespan lifespan-Benzaldehyde
       set nectar-regeneration Benzaldehyde-nectar-regeneration
+      set start-of-bloom start-of-bloom-Benzaldehyde
     ]
     set has-seed? TRUE
   ]
@@ -201,15 +223,17 @@ end
 ;set a seed to bloom if the next tick is in the correct season
 to flowers-bloom
   ask seeds [
-     if random 1000 < 7 ;randomly have the flower bloom 7/1000 chance
+    if (ticks + 1) mod 5000 > start-of-bloom
+     [if random 1000 < 7 ;randomly have the flower bloom 7/1000 chance
         [hatch-a-flower
          die;kill the seed
         ]
+      ]
   ]
 end
 
-;Produces a flower
-to hatch-a-flower
+
+to hatch-a-flower  ;this is a seeds routine
   hatch-flowers 1
      [set shape "flower"
         set size 2
@@ -266,6 +290,15 @@ to bees-go-back-to-hive
   ]
 end
 
+;NOT USED FUNCTION
+to bees-return-to-hive
+  ask bees [
+    if nectar > 200 [
+      set nectar nectar - 200
+      ask hives with [species = [species] of myself] [set nectar nectar + 200]
+    ]
+  ]
+end
 
 ;make bees
 to make-bees
@@ -290,7 +323,7 @@ to make-new-bees
   ask hives [
     if species = 1 [set gl-nectar1 nectar]
     if species = 2 [set gl-nectar2 nectar]
-    while [nectar > 2500] [
+    while [nectar > 2500 and ticks mod 5000 < 4000] [
       set nectar nectar - 2500
       hatch-bees 1 [
         set home-hive myself
@@ -318,6 +351,14 @@ to move-bees
   ]
 end
 
+;check if flowers should die
+to flowers-breed
+  ask flowers [
+    if age > lifespan
+      [die
+      ]
+  ]
+end
 
 ;bees grow and
 to bees-grow
@@ -407,10 +448,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-23
-89
-295
-122
+14
+100
+293
+133
 starting-number-of-bees
 starting-number-of-bees
 1
@@ -439,13 +480,13 @@ NIL
 1
 
 SWITCH
-437
-468
-573
-501
+441
+462
+575
+495
 show-energy?
 show-energy?
-0
+1
 1
 -1000
 
@@ -576,40 +617,100 @@ NIL
 HORIZONTAL
 
 SLIDER
-754
-99
-973
-132
-lifespan-Pinene
-lifespan-Pinene
+755
+100
+972
+133
+start-of-bloom-Pinene
+start-of-bloom-Pinene
 0
-3000
-2000.0
+4000
+500.0
 100
 1
 NIL
 HORIZONTAL
 
 SLIDER
-994
-103
+993
+102
 1217
-136
-lifespan-Limonene
-lifespan-Limonene
+135
+start-of-bloom-Limonene
+start-of-bloom-Limonene
 0
-3000
-2000.0
-100
+4000
+1000.0
+50
 1
 NIL
 HORIZONTAL
 
 SLIDER
 753
-303
+305
 971
+338
+start-of-bloom-Ocimene
+start-of-bloom-Ocimene
+0
+4000
+1500.0
+100
+1
+NIL
+HORIZONTAL
+
+SLIDER
+985
+303
+1232
 336
+start-of-bloom-Benzaldehyde
+start-of-bloom-Benzaldehyde
+0
+4000
+2000.0
+100
+1
+NIL
+HORIZONTAL
+
+SLIDER
+755
+135
+974
+168
+lifespan-Pinene
+lifespan-Pinene
+0
+3000
+2000.0
+100
+1
+NIL
+HORIZONTAL
+
+SLIDER
+995
+139
+1218
+172
+lifespan-Limonene
+lifespan-Limonene
+0
+3000
+2000.0
+100
+1
+NIL
+HORIZONTAL
+
+SLIDER
+754
+341
+972
+374
 lifespan-Ocimene
 lifespan-Ocimene
 0
@@ -621,10 +722,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-986
-302
-1234
-335
+983
+338
+1231
+371
 lifespan-Benzaldehyde
 lifespan-Benzaldehyde
 0
