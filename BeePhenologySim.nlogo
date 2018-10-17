@@ -1,19 +1,29 @@
+;BaselineSim v1.0.1 10/16/2018
+;This Simulation tests how two Species of Bees
+;interact with different flowers based on the Bee's preverences
+;The flowers also bloom over time over the simulation of different seasons
+;The flowers start as seeds and can bloom at different times in proportion to the amount they have been polonated
+
+;Global Variables that all Breeds can see
 globals [
   hives-list
   gl-nectar1    ; these gl-nectars are for ease of use in beharior space
   gl-nectar2
 ]
-
+;Defined Breeds [pural singular]
 breed [seeds seed]
 breed [bees bee]
 breed [flowers flower]
 breed [hives hive]
 
+;attributes of all breeds
 turtles-own [
   species
   age
   nectar
 ]
+
+;attributes of Bees
 bees-own [
   hive-location
   chosen-flower
@@ -25,7 +35,14 @@ bees-own [
   collection-start-time
   current-flower
 ]
-seeds-own [lifespan nectar-regeneration start-of-bloom]
+
+;attributes of Seeds
+seeds-own [
+  lifespan
+  nectar-regeneration
+  start-of-bloom
+]
+
 flowers-own [flower-seeds flower-block lifespan nectar-regeneration]
 patches-own [has-seed?]
 hives-own [producing-bees season-start season-end]
@@ -40,7 +57,7 @@ end
 
 to make-hives
   let i 1
-  repeat number-of-hives [
+  repeat 2 [
     create-hives 1 [
       setxy random-xcor random-ycor
       set size 5
@@ -51,13 +68,13 @@ to make-hives
       ; additionally set the time variables for the hives that are controlled with sliders
       ifelse i = 1 [
         set color orange
-        set season-start sp1-start-time
-        set season-end ((sp1-end-time - sp1-start-time) * sp1-save-nectar-time-percentage) + sp1-start-time
+        set season-start Bee1-start-time
+        set season-end ((Bee1-end-time - Bee1-start-time) * Bee1-save-nectar-time-percentage) + Bee1-start-time
       ]
       [
         set color yellow
-        set season-start sp2-start-time
-        set season-end sp2-end-time
+        set season-start Bee2-start-time
+        set season-end Bee2-end-time
       ]
       set producing-bees false
     ]
@@ -136,71 +153,71 @@ end
 to-report prob-species [spnum]
   if species = 1 [
   if spnum = 0 [report 0]
-  if spnum = 1 [report Bee1-Sp1-Pinene]
-  if spnum = 2 [report Bee1-Sp2-Limonene]
-  if spnum = 3 [report Bee1-Sp3-Ocimene]
-  if spnum = 4 [report Bee1-Sp4-Benzaldehyde]
+  if spnum = 1 [report Bee1-Pref-Pinene]
+  if spnum = 2 [report Bee1-Pref-Limonene]
+  if spnum = 3 [report Bee1-Pref-Ocimene]
+  if spnum = 4 [report Bee1-Pref-Benzaldehyde]
   ]
   if species = 2 [
    if spnum = 0 [report 0]
-  if spnum = 1 [report Bee2-Sp1-Pinene]
-  if spnum = 2 [report Bee2-Sp2-Limonene]
-  if spnum = 3 [report Bee2-Sp3-Ocimene]
-  if spnum = 4 [report Bee2-Sp4-Benzaldehyde]
+  if spnum = 1 [report Bee2-Pref-Pinene]
+  if spnum = 2 [report Bee2-Pref-Limonene]
+  if spnum = 3 [report Bee2-Pref-Ocimene]
+  if spnum = 4 [report Bee2-Pref-Benzaldehyde]
   ]
 end
 
 
 to make-seeds
-  ask n-of number-of-sp1 patches with [has-seed? = FALSE]
+  ask n-of number-of-Pinene patches with [has-seed? = FALSE]
     [
     sprout-seeds 1 [
       set color white
       set size 1
       set species 1
       set shape "circle"
-      set lifespan lifespan-sp1
-      set nectar-regeneration sp1-nectar-regeneration
-      set start-of-bloom start-of-bloom-sp1
+      set lifespan lifespan-Pinene
+      set nectar-regeneration Pinene-nectar-regeneration
+      set start-of-bloom start-of-bloom-Pinene
     ]
     set has-seed? TRUE
   ]
-   ask n-of number-of-sp2 patches with [has-seed? = FALSE]
+   ask n-of number-of-Limonene patches with [has-seed? = FALSE]
   [
     sprout-seeds 1 [
       set color red
       set size 1
       set shape "circle"
       set species 2
-      set lifespan lifespan-sp2
-      set nectar-regeneration sp2-nectar-regeneration
-      set start-of-bloom start-of-bloom-sp2
+      set lifespan lifespan-Limonene
+      set nectar-regeneration Limonene-nectar-regeneration
+      set start-of-bloom start-of-bloom-Limonene
     ]
     set has-seed? TRUE
   ]
-  ask n-of number-of-sp3 patches with [has-seed? = FALSE]
+  ask n-of number-of-Ocimene patches with [has-seed? = FALSE]
   [
     sprout-seeds 1 [
       set color cyan
       set size 1
       set species 3
       set shape "circle"
-      set lifespan lifespan-sp3
-      set nectar-regeneration sp3-nectar-regeneration
-      set start-of-bloom start-of-bloom-sp3
+      set lifespan lifespan-Ocimene
+      set nectar-regeneration Ocimene-nectar-regeneration
+      set start-of-bloom start-of-bloom-Ocimene
     ]
     set has-seed? TRUE
   ]
-  ask n-of number-of-sp4 patches with [has-seed? = FALSE]
+  ask n-of number-of-Benzaldehyde patches with [has-seed? = FALSE]
   [
     sprout-seeds 1 [
       set color green
       set size 1
       set species 4
       set shape "circle"
-      set lifespan lifespan-sp4
-      set nectar-regeneration sp4-nectar-regeneration
-      set start-of-bloom start-of-bloom-sp4
+      set lifespan lifespan-Benzaldehyde
+      set nectar-regeneration Benzaldehyde-nectar-regeneration
+      set start-of-bloom start-of-bloom-Benzaldehyde
     ]
     set has-seed? TRUE
   ]
@@ -466,21 +483,6 @@ show-energy?
 1
 -1000
 
-SLIDER
-855
-56
-1027
-89
-number-of-hives
-number-of-hives
-1
-3
-2.0
-1
-1
-NIL
-HORIZONTAL
-
 PLOT
 1066
 10
@@ -511,7 +513,7 @@ number-of-sp2
 number-of-sp2
 0
 100
-99.0
+100.0
 1
 1
 NIL
@@ -541,7 +543,7 @@ number-of-sp3
 number-of-sp3
 0
 100
-97.0
+96.0
 1
 1
 NIL
@@ -646,7 +648,7 @@ start-of-bloom-sp3
 start-of-bloom-sp3
 0
 4000
-1500.0
+2600.0
 100
 1
 NIL
@@ -661,7 +663,7 @@ start-of-bloom-sp4
 start-of-bloom-sp4
 0
 4000
-2000.0
+3000.0
 100
 1
 NIL
@@ -753,8 +755,8 @@ SLIDER
 189
 188
 222
-Bee1-Sp1-Pinene
-Bee1-Sp1-Pinene
+Bee1-Pref-Pinene
+Bee1-Pref-Pinene
 0
 100
 82.0
@@ -768,11 +770,11 @@ SLIDER
 229
 188
 262
-Bee1-Sp2-Limonene
-Bee1-Sp2-Limonene
+Bee1-Pref-Limonene
+Bee1-Pref-Limonene
 0
 100
-64.0
+67.0
 1
 1
 NIL
@@ -783,11 +785,11 @@ SLIDER
 267
 189
 300
-Bee1-Sp3-Ocimene
-Bee1-Sp3-Ocimene
+Bee1-Pref-Ocimene
+Bee1-Pref-Ocimene
 0
 100
-37.0
+36.0
 1
 1
 NIL
@@ -796,10 +798,10 @@ HORIZONTAL
 SLIDER
 16
 305
-188
+203
 338
-Bee1-Sp4-Benzaldehyde
-Bee1-Sp4-Benzaldehyde
+Bee1-Pref-Benzaldehyde
+Bee1-Pref-Benzaldehyde
 0
 100
 20.0
@@ -832,8 +834,8 @@ SLIDER
 343
 188
 376
-Bee2-Sp1-Pinene
-Bee2-Sp1-Pinene
+Bee2-Pref-Pinene
+Bee2-Pref-Pinene
 0
 100
 10.0
@@ -847,8 +849,8 @@ SLIDER
 382
 187
 415
-Bee2-Sp2-Limonene
-Bee2-Sp2-Limonene
+Bee2-Pref-Limonene
+Bee2-Pref-Limonene
 0
 100
 64.0
@@ -862,11 +864,11 @@ SLIDER
 420
 187
 453
-Bee2-Sp3-Ocimene
-Bee2-Sp3-Ocimene
+Bee2-Pref-Ocimene
+Bee2-Pref-Ocimene
 0
 100
-41.0
+38.0
 1
 1
 NIL
@@ -875,10 +877,10 @@ HORIZONTAL
 SLIDER
 14
 457
-187
+201
 490
-Bee2-Sp4-Benzaldehyde
-Bee2-Sp4-Benzaldehyde
+Bee2-Pref-Benzaldehyde
+Bee2-Pref-Benzaldehyde
 0
 100
 14.0
@@ -911,11 +913,11 @@ SLIDER
 503
 187
 536
-sp1-start-time
-sp1-start-time
+Bee1-start-time
+Bee1-start-time
 0
 1000
-200.0
+800.0
 100
 1
 NIL
@@ -926,8 +928,8 @@ SLIDER
 541
 187
 574
-sp2-start-time
-sp2-start-time
+Bee2-start-time
+Bee2-start-time
 0
 1000
 0.0
@@ -941,11 +943,11 @@ SLIDER
 503
 366
 536
-sp1-end-time
-sp1-end-time
+Bee1-end-time
+Bee1-end-time
 1000
 5000
-2100.0
+1400.0
 100
 1
 NIL
@@ -956,8 +958,8 @@ SLIDER
 539
 366
 572
-sp2-end-time
-sp2-end-time
+Bee2-end-time
+Bee2-end-time
 1000
 5000
 4000.0
@@ -969,10 +971,10 @@ HORIZONTAL
 SLIDER
 374
 504
-610
+623
 537
-sp1-save-nectar-time-percentage
-sp1-save-nectar-time-percentage
+Bee1-save-nectar-time-percentage
+Bee1-save-nectar-time-percentage
 0
 1
 0.75
@@ -984,13 +986,13 @@ HORIZONTAL
 SLIDER
 373
 541
-609
+622
 574
-sp2-save-nectar-time-percentage
-sp2-save-nectar-time-percentage
+Bee2-save-nectar-time-percentage
+Bee2-save-nectar-time-percentage
 0
 1
-0.75
+0.9
 .01
 1
 NIL
@@ -1459,7 +1461,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0.2
+NetLogo 6.0.4
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
