@@ -1,14 +1,6 @@
 ;SimpleSim v1.0.0 9/28/2018
 ;This Simulation tests how two Species of Bees
 ;interact with different flowers based on the Bee's preverences
-<<<<<<< HEAD
-;The flowers also bloom over time
-;and produce relatively to the amount they have been pollonated
-
-;Note the relationship between the seeds and the flowers
-
-=======
->>>>>>> 7db34b1eaf0ed62aaf5c85c27ce8afa9deb001a6
 
 ;Global Variables that all Breeds can see
 globals [
@@ -40,21 +32,11 @@ bees-own [
   current-flower
 ]
 
-<<<<<<< HEAD
-;attributes of Seeds
-seeds-own [
-  nectar-regeneration
-]
-=======
->>>>>>> 7db34b1eaf0ed62aaf5c85c27ce8afa9deb001a6
 
 ;attributes of flowers
 flowers-own [
   flower-block
-<<<<<<< HEAD
-=======
   flower-seeds
->>>>>>> 7db34b1eaf0ed62aaf5c85c27ce8afa9deb001a6
   nectar-regeneration
 ]
 
@@ -100,10 +82,6 @@ end
 
 ;go button press function
 to go
-<<<<<<< HEAD
-  flowers-bloom ;bloom flowers
-=======
->>>>>>> 7db34b1eaf0ed62aaf5c85c27ce8afa9deb001a6
   make-nectar ;make nectar
   ;if bees havent chosen a flower, choose one
   ask bees [
@@ -115,11 +93,7 @@ to go
   collect-nectar ;collect nectar
   bees-go-back-to-hive ;have bees go back to hive
   make-new-bees ;make a new bee
-<<<<<<< HEAD
-  bees-grow ;bees grow
-=======
   bees-grow ;bees age and die
->>>>>>> 7db34b1eaf0ed62aaf5c85c27ce8afa9deb001a6
   tick ;set a new tick
 end
 
@@ -169,16 +143,11 @@ to make-flowers
       set color white
       set size 2
       set species 1
-<<<<<<< HEAD
-      set shape "circle"
-      set nectar-regeneration Pinene-nectar-regeneration
-=======
       set shape "flower"
       set nectar-regeneration Pinene-nectar-regeneration
       set nectar 0
       set age 0
       set flower-block 20
->>>>>>> 7db34b1eaf0ed62aaf5c85c27ce8afa9deb001a6
     ]
     set has-flower? TRUE
   ]
@@ -191,12 +160,9 @@ to make-flowers
       set shape "flower"
       set species 2
       set nectar-regeneration Limonene-nectar-regeneration
-<<<<<<< HEAD
-=======
       set nectar 0
       set age 0
       set flower-block 20
->>>>>>> 7db34b1eaf0ed62aaf5c85c27ce8afa9deb001a6
     ]
     set has-flower? TRUE
   ]
@@ -207,16 +173,11 @@ to make-flowers
       set color cyan
       set size 1
       set species 3
-<<<<<<< HEAD
-      set shape "circle"
-      set nectar-regeneration Ocimene-nectar-regeneration
-=======
       set shape "flower"
       set nectar-regeneration Ocimene-nectar-regeneration
       set nectar 0
       set age 0
       set flower-block 20
->>>>>>> 7db34b1eaf0ed62aaf5c85c27ce8afa9deb001a6
     ]
     set has-flower? TRUE
   ]
@@ -227,36 +188,6 @@ to make-flowers
       set color green
       set size 2
       set species 4
-<<<<<<< HEAD
-      set shape "circle"
-      set nectar-regeneration Benzaldehyde-nectar-regeneration
-    ]
-    set has-seed? TRUE
-  ]
-end
-
-;set a seed to bloom if the next tick is in the correct season
-to flowers-bloom
-  ask seeds [
-     if random 1000 < 7 ;randomly have the flower bloom 7/1000 chance
-        [hatch-a-flower
-         die;kill the seed
-        ]
-  ]
-end
-
-;Produces a flower
-to hatch-a-flower
-  hatch-flowers 1
-     [set shape "flower"
-        set size 2
-        set nectar 0
-        set age 0
-        set flower-block 20
-      ]
-end  ; end hatch-a-flower
-
-=======
       set shape "flower"
       set nectar-regeneration Benzaldehyde-nectar-regeneration
       set nectar 0
@@ -267,7 +198,6 @@ end  ; end hatch-a-flower
   ]
 end
 
->>>>>>> 7db34b1eaf0ed62aaf5c85c27ce8afa9deb001a6
 
 ;have flower produce nectar and increase age
 to make-nectar
@@ -363,16 +293,9 @@ to move-bees
     ask bees [
       ifelse destination = NOBODY [right (60 - random 120)] ;random movement if no flower is chosen
       [face destination] ;move towards chosen flower
-<<<<<<< HEAD
-      forward 1
-  ]
-end
-
-=======
       forward 1 ;move forward one step
   ]
 end
->>>>>>> 7db34b1eaf0ed62aaf5c85c27ce8afa9deb001a6
 
 ;bees grow and die after 1000 steps and randomly inbetween
 to bees-grow

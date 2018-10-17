@@ -462,11 +462,7 @@ starting-number-of-bees
 starting-number-of-bees
 1
 30
-<<<<<<< HEAD:BaselineSim.nlogo
-8.0
-=======
 30.0
->>>>>>> 7db34b1eaf0ed62aaf5c85c27ce8afa9deb001a6:BaselineSim.nlogo
 1
 1
 NIL
@@ -490,17 +486,10 @@ NIL
 1
 
 SWITCH
-<<<<<<< HEAD:BaselineSim.nlogo
-441
-462
-575
-495
-=======
 312
 463
 446
 496
->>>>>>> 7db34b1eaf0ed62aaf5c85c27ce8afa9deb001a6:BaselineSim.nlogo
 show-energy?
 show-energy?
 1
