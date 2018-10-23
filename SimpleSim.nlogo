@@ -97,6 +97,31 @@ to go
   tick ;set a new tick
 end
 
+;Reset the sliders to default values
+to defaults
+  set starting-number-of-bees 30
+
+  set Bee1-Pref-Pinene 80
+  set Bee1-Pref-Limonene 60
+  set Bee1-Pref-Ocimene 35
+  set Bee1-Pref-Benzaldehyde 20
+
+  set Bee2-Pref-Pinene 10
+  set Bee2-Pref-Limonene 60
+  set Bee2-Pref-Ocimene 40
+  set Bee2-Pref-Benzaldehyde 20
+
+  set number-of-Pinene 100
+  set number-of-Limonene 100
+  set number-of-Ocimene 100
+  set number-of-Benzaldehyde 100
+
+  set Pinene-nectar-regeneration 10
+  set Limonene-nectar-regeneration 8
+  set Ocimene-nectar-regeneration 5
+  set Benzaldehyde-nectar-regeneration 5
+end
+
 
 ;have bees choose a flower
 to choose-flower
@@ -171,7 +196,7 @@ to make-flowers
   [;plant a Ocimene seed (blue/cyan)
     sprout-flowers 1 [
       set color cyan
-      set size 1
+      set size 2
       set species 3
       set shape "flower"
       set nectar-regeneration Ocimene-nectar-regeneration
@@ -417,13 +442,13 @@ NIL
 1
 
 SWITCH
-437
-468
-573
-501
+316
+469
+452
+502
 show-energy?
 show-energy?
-0
+1
 1
 -1000
 
@@ -517,7 +542,7 @@ Limonene-nectar-regeneration
 Limonene-nectar-regeneration
 0
 10
-6.0
+8.0
 1
 1
 NIL
@@ -532,7 +557,7 @@ Ocimene-nectar-regeneration
 Ocimene-nectar-regeneration
 0
 10
-6.0
+5.0
 1
 1
 NIL
@@ -547,7 +572,7 @@ Benzaldehyde-nectar-regeneration
 Benzaldehyde-nectar-regeneration
 0
 10
-6.0
+5.0
 1
 1
 NIL
@@ -566,13 +591,13 @@ nectar
 0.0
 10.0
 true
-false
+true
 "" ""
 PENS
-"species 1" 1.0 0 -1184463 true "" "let fl1 flowers with [species = 1]\nifelse any? fl1 \n[plotxy ticks mean [nectar] of flowers with [species = 1]\nplot-pen-down]\n[plot-pen-up]"
-"species 2" 1.0 0 -2674135 true "" "let fl2 flowers with [species = 2]\nifelse any? fl2 \n[plotxy ticks mean [nectar] of flowers with [species = 2]\nplot-pen-down]\n[plot-pen-up]"
-"species 3" 1.0 0 -11221820 true "" "let fl3 flowers with [species = 3]\nifelse any? fl3 \n[plotxy ticks mean [nectar] of flowers with [species = 3]\nplot-pen-down]\n[plot-pen-up]"
-"species 4" 1.0 0 -10899396 true "" "let fl4 flowers with [species = 4]\nifelse any? fl4 \n[plotxy ticks mean [nectar] of flowers with [species = 4]\nplot-pen-down]\n[plot-pen-up]"
+"Pinene" 1.0 0 -1184463 true "" "let fl1 flowers with [species = 1]\nifelse any? fl1 \n[plotxy ticks mean [nectar] of flowers with [species = 1]\nplot-pen-down]\n[plot-pen-up]"
+"Limonene" 1.0 0 -2674135 true "" "let fl2 flowers with [species = 2]\nifelse any? fl2 \n[plotxy ticks mean [nectar] of flowers with [species = 2]\nplot-pen-down]\n[plot-pen-up]"
+"Ocimene" 1.0 0 -11221820 true "" "let fl3 flowers with [species = 3]\nifelse any? fl3 \n[plotxy ticks mean [nectar] of flowers with [species = 3]\nplot-pen-down]\n[plot-pen-up]"
+"Benzaldehyde" 1.0 0 -10899396 true "" "let fl4 flowers with [species = 4]\nifelse any? fl4 \n[plotxy ticks mean [nectar] of flowers with [species = 4]\nplot-pen-down]\n[plot-pen-up]"
 
 SLIDER
 13
@@ -583,7 +608,7 @@ Bee1-Pref-Pinene
 Bee1-Pref-Pinene
 0
 100
-82.0
+80.0
 1
 1
 NIL
@@ -598,7 +623,7 @@ Bee1-Pref-Limonene
 Bee1-Pref-Limonene
 0
 100
-65.0
+60.0
 1
 1
 NIL
@@ -613,7 +638,7 @@ Bee1-Pref-Ocimene
 Bee1-Pref-Ocimene
 0
 100
-36.0
+35.0
 1
 1
 NIL
@@ -662,7 +687,7 @@ Bee2-Pref-Pinene
 Bee2-Pref-Pinene
 0
 100
-11.0
+10.0
 1
 1
 NIL
@@ -677,7 +702,7 @@ Bee2-Pref-Limonene
 Bee2-Pref-Limonene
 0
 100
-65.0
+60.0
 1
 1
 NIL
@@ -692,7 +717,7 @@ Bee2-Pref-Ocimene
 Bee2-Pref-Ocimene
 0
 100
-44.0
+40.0
 1
 1
 NIL
@@ -707,7 +732,7 @@ Bee2-Pref-Benzaldehyde
 Bee2-Pref-Benzaldehyde
 0
 100
-13.0
+20.0
 1
 1
 NIL
@@ -726,11 +751,11 @@ NIL
 0.0
 10.0
 true
-false
+true
 "" ""
 PENS
-"Hive 1" 1.0 0 -955883 true "" "plot mean [nectar] of hives with [species = 1]"
-"Hive 2" 1.0 0 -1184463 true "" "plot mean [nectar] of hives with [species = 2]"
+"Hive 1" 1.0 0 -955883 true "" "let hive1 hives with [species = 1]\nifelse any? hive1 \n[plotxy ticks mean [nectar] of hives with [species = 1]\nplot-pen-down]\n[plot-pen-up]"
+"Hive 2" 1.0 0 -1184463 true "" "let hive2 hives with [species = 2]\nifelse any? hive2\n[plotxy ticks mean [nectar] of hives with [species = 2]\nplot-pen-down]\n[plot-pen-up]"
 
 TEXTBOX
 784
@@ -790,6 +815,23 @@ TEXTBOX
 Bee 2 Variables
 12
 0.0
+1
+
+BUTTON
+506
+471
+632
+504
+Reset Sliders
+defaults
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
 1
 
 @#$#@#$#@

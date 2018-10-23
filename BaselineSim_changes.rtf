@@ -1,391 +1,1157 @@
-{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
-{\colortbl ;\red0\green255\blue0;\red255\green0\blue0;}
-{\*\generator Riched20 10.0.17134}\viewkind4\uc1 
-\pard\sa200\sl276\slmult1\tx8910\tx9270\highlight1\f0\fs22\lang9 New additions to Baseline\par
-\highlight2 Removal from SimpleSim\highlight0\par
-\par
-;BaselineSim v1.0.1 10/13/2018\par
+{\rtf1\ansi\deff3\adeflang1025
+{\fonttbl{\f0\froman\fprq2\fcharset0 Times New Roman;}{\f1\froman\fprq2\fcharset2 Symbol;}{\f2\fswiss\fprq2\fcharset0 Arial;}{\f3\froman\fprq2\fcharset0 Liberation Serif{\*\falt Times New Roman};}{\f4\froman\fprq2\fcharset0 Liberation Sans{\*\falt Arial};}{\f5\froman\fprq2\fcharset0 Calibri;}{\f6\fnil\fprq2\fcharset0 Liberation Serif{\*\falt Times New Roman};}}
+{\colortbl;\red0\green0\blue0;\red0\green0\blue255;\red0\green255\blue255;\red0\green255\blue0;\red255\green0\blue255;\red255\green0\blue0;\red255\green255\blue0;\red255\green255\blue255;\red0\green0\blue128;\red0\green128\blue128;\red0\green128\blue0;\red128\green0\blue128;\red128\green0\blue0;\red128\green128\blue0;\red128\green128\blue128;\red192\green192\blue192;}
+{\stylesheet{\s0\snext0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033 Normal;}
+{\s15\sbasedon0\snext16\ql\nowidctlpar\hyphpar0\sb240\sa120\keepn\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\loch\f4\fs28\lang1033 Heading;}
+{\s16\sbasedon0\snext16\sl288\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa140\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\loch\f3\fs24\lang1033 Text Body;}
+{\s17\sbasedon16\snext17\sl288\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa140\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\loch\f3\fs24\lang1033 List;}
+{\s18\sbasedon0\snext18\ql\nowidctlpar\hyphpar0\sb120\sa120\ltrpar\cf1\i\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\loch\f3\fs24\lang1033 Caption;}
+{\s19\sbasedon0\snext19\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\loch\f3\fs24\lang1033 Index;}
+}{\*\generator LibreOffice/5.1.6.2$Linux_X86_64 LibreOffice_project/10m0$Build-2}{\info{\creatim\yr0\mo0\dy0\hr0\min0}{\revtim\yr2018\mo10\dy22\hr22\min55}{\printim\yr0\mo0\dy0\hr0\min0}}\deftab720
+\hyphauto0\viewscale160
+{\*\pgdsctbl
+{\pgdsc0\pgdscuse451\pgwsxn12240\pghsxn15840\marglsxn1800\margrsxn1800\margtsxn1440\margbsxn1440\pgdscnxt0 Default Style;}}
+\formshade{\*\pgdscno0}\paperh15840\paperw12240\margl1800\margr1800\margt1440\margb1440\sectd\sbknone\sectunlocked1\pgndec\pgwsxn12240\pghsxn15840\marglsxn1800\margrsxn1800\margtsxn1440\margbsxn1440\ftnbj\ftnstart1\ftnrstcont\ftnnar\aenddoc\aftnrstcont\aftnstart1\aftnnrlc
+{\*\ftnsep}\pgndec\pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\tx8910\tx9270\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+;New additions to Baseline}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\tx8910\tx9270\hyphpar0\sb0\sa0\ltrpar{\highlight6\rtlch \ltrch\loch\fs16\lang9\loch\f5
+;Removal from SimpleSim}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\tx8910\tx9270\hyphpar0\sb0\sa0\ltrpar\rtlch \ltrch\loch\fs16\lang9\loch\f5
 
-\pard\sa200\sl276\slmult1 ;This Simulation tests how two Species of Bees\par
-;interact with different flowers based on the Bee's preverences\par
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\tx8910\tx9270\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+;BaselineSim v1.0.1 10/13/2018}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+;This Simulation tests how two Species of Bees}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+;interact with different flowers based on the Bee's pre}{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+f}{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+erences}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\li0\ri-540\lin0\rin-540\fi0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+;The flowers also bloom over time over the simulation of different seasons}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+;Added Seeds to flower relationship}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+;Flowers die and replant over a cycle}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar\rtlch \ltrch\loch\fs16\lang9\loch\f5
 
-\pard\ri-540\sa200\sl276\slmult1 ;The flowers also bloom over time over the simulation of different seasons\par
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+;Global Variables that all Breeds can see}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight6\rtlch \ltrch\loch\fs16\lang9\loch\f5
+globals []}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar\rtlch \ltrch\loch\fs16\lang9\loch\f5
 
-\pard\sa200\sl276\slmult1\highlight1 ;Added Seeds to flower relationship\par
-;Flowers die and replant over a cycle\par
-\highlight0\par
-;Global Variables that all Breeds can see\par
-\highlight2 globals []\par
-\highlight0\par
-;Defined Breeds [pural singular]\par
-\highlight1 breed [seeds seed]\highlight0\par
-breed [bees bee]\par
-breed [flowers flower]\par
-breed [hives hive]\par
-\par
-;attributes of all breeds\par
-turtles-own [\par
-  species ;specify the type of breed\par
-  age \par
-]\par
-\par
-;attributes of Bees\par
-bees-own [\par
-  hive-location\par
-  chosen-flower\par
-  previous-flower\par
-  destination\par
-  home-hive\par
-  pollen-color\par
-  busy                     ;is-busy boolean\par
-  collection-start-time\par
-  current-flower\par
-  \highlight1 carry-nectar\highlight0\par
-]\par
-\par
-\highlight1 ;attributes of Seeds\par
-seeds-own [\par
-  lifespan\par
-  nectar-regeneration\par
-  start-of-bloom\par
-]\par
-\highlight0\par
-;attributes of flowers\par
-\highlight1 flowers-own [\par
-  flower-seeds\par
-  flower-block\par
-  lifespan\par
-  nectar-regeneration\par
-  start-of-bloom\par
-  flower-nectar\par
-]\par
-\highlight0\par
-;patches attributes\par
-patches-own [has-seed?]\par
-hives-own [storage-nectar]\par
-\par
-;On set setup button press\par
-to setup\par
-  clear-all ;clear-all objects\par
-  reset-ticks ;reset tickes\par
-  setup-patches ;set patch color and has seed to false\par
-  \highlight1 make-seeds ;place seeds\highlight0\par
-  make-hives ;place hives\par
-  make-bees ;make bees\par
-end\par
-\par
-;function to set hives on initialization\par
-to make-hives\par
-  ;for loop to place hives\par
-  let i 1 ;i determines type of the hive\par
-  repeat 2[\par
-    create-hives 1 [\par
-      setxy random-xcor random-ycor\par
-      set size 5\par
-      set shape "beehive"\par
-      ifelse i = 2 [set color yellow] [set color orange] \par
-;if i = 2 then hive is yellow otherwise orange\par
-      \highlight1 set storage-nectar 0\highlight0\par
-      set species i              ;set species # to i\par
-    ]\par
-    set i i + 1\par
-  ]\par
-end\par
-\par
-;function to make changes to patches\par
-to setup-patches\par
-  ask patches [\par
-    set pcolor green - 3  ;set the color of the patch\par
-    \highlight1 set has-seed? FALSE ;set has-seed to false\highlight0\par
-  ]\par
-end\par
-\par
-\par
-;go button press function\par
-to go\par
-\highlight1   if (ticks + 1) mod 5000 = 0 [new-season]\par
- ;if the next tick is divisible by 5000 set change the season\par
-\highlight0   \highlight1 flowers-bloom ;bloom flowers\par
-\highlight0   make-nectar ;make nectar\par
-  ;if bees havent chosen a flower, choose oen\par
-  ask bees [\par
-  if chosen-flower = NOBODY [\par
-  choose-flower\par
-  ]]\par
-  move-bees   ;move the bees\par
-  collect-nectar ;collect nectar\par
-  bees-go-back-to-hive ;have bees go back to hive if need be\par
-  make-new-bees ;make a new bee\par
-  \highlight1 flowers-breed ;make new flowers\highlight0\par
-  bees-grow ;bees grow\par
-  tick ;set a new tick\par
-end\par
-\par
-;change to new season\par
-\highlight1 to new-season\par
-  show "got to new season"\par
-  ask flowers[\par
-    set flower-nectar 0 ;reset flower nectar to 0 before dieing\par
-    die ;all flowers die regardless of the flowers lifespan\par
-  ] ;kill all flowers\par
-  ask bees [\par
-    set carry-nectar 0 ;reset flower nectar to 0 before dieing\par
-    die\par
-  ] ;kill all bees\par
-  setup-patches ;set up patches\par
-  make-seeds ;make new seeds\par
-  make-new-bees ;make bees in respect to nector\par
-  ask hives[\par
-  show (word "Hive nectar values: Hive1 " storage-nectar " Hive2: "  storage-nectar)\par
-  ]\par
-end\par
-\highlight0\par
-\par
-\par
-;have bees choose a flower\par
-to choose-flower\par
-  let temp-flower previous-flower ;save previous flower into a temp variable\par
-\par
-  ;let flower list be equivilent to the list of flowers in the bee's line of site not including the previous flower\par
-  let flower-list flowers in-cone bee-vision-length bee-vision-degrees with [self != temp-flower]   ;Liz added cone-length cone-degrees and sliders\par
-  if any? flower-list ;if there are any flowers in that list\par
-  [\par
-    let species-seen sort remove-duplicates [species] of flower-list ;remove the duplicates in the list\par
-    let best-species 0 ;reset bee's favorite species\par
-    foreach species-seen [i -> if prob-species i > prob-species best-species [set best-species i]] ;let the best flower of the bee be the best on in the flower list\par
-    let best-flower one-of (flower-list with [species = best-species])\par
-    set destination best-flower ;go in the direction to the best flower\par
-    set chosen-flower best-flower ;set chosen flower to the bestone\par
-\par
-  ]\par
-end\par
-\par
-;get the prefered species per bee type\par
-to-report prob-species [spnum]\par
-  ;for species 1\par
-  if species = 1 [\par
-  if spnum = 0 [report 0]\par
-  if spnum = 1 [report Bee1-Pref-Pinene]\par
-  if spnum = 2 [report Bee1-Pref-Limonene]\par
-  if spnum = 3 [report Bee1-Pref-Ocimene]\par
-  if spnum = 4 [report Bee1-Pref-Benzaldehyde]\par
-  ]\par
-  ;for species 2\par
-  if species = 2 [\par
-  if spnum = 0 [report 0]\par
-  if spnum = 1 [report Bee2-Pref-Pinene]\par
-  if spnum = 2 [report Bee2-Pref-Limonene]\par
-  if spnum = 3 [report Bee2-Pref-Ocimene]\par
-  if spnum = 4 [report Bee2-Pref-Benzaldehyde]\par
-  ]\par
-end\par
-\par
-\highlight1 ;make seeds for each type of flower\par
-to make-seeds\par
-  ;for random number between 0 and the specified seed count: plant Pinene seeds...\par
-  ask n-of number-of-Pinene patches with [has-seed? = FALSE]\par
-    [;plant a Pinene seed (white/yellow)\par
-    sprout-seeds 1 [\par
-      set color white\par
-      set size 1\par
-      set species 1\par
-      set shape "circle"\par
-      set lifespan lifespan-Pinene\par
-      set nectar-regeneration Pinene-nectar-regeneration\par
-      set start-of-bloom start-of-bloom-Pinene\par
-    ]\par
-    set has-seed? TRUE\par
-  ]\par
-  ;for random number between 0 and the specified seed count: plant Limonene seeds...\par
-   ask n-of number-of-Limonene patches with [has-seed? = FALSE]\par
-  [;plant a Limonene seed (red)\par
-    sprout-seeds 1 [\par
-      set color red\par
-      set size 1\par
-      set shape "circle"\par
-      set species 2\par
-      set lifespan lifespan-Limonene\par
-      set nectar-regeneration Limonene-nectar-regeneration\par
-      set start-of-bloom start-of-bloom-Limonene\par
-    ]\par
-    set has-seed? TRUE\par
-  ]\par
-   ;for random number between 0 and the specified seed count: plant Ocimene seeds...\par
-  ask n-of number-of-Ocimene patches with [has-seed? = FALSE]\par
-  [;plant a Ocimene seed (blue/cyan)\par
-    sprout-seeds 1 [\par
-      set color cyan\par
-      set size 1\par
-      set species 3\par
-      set shape "circle"\par
-      set lifespan lifespan-Ocimene\par
-      set nectar-regeneration Ocimene-nectar-regeneration\par
-      set start-of-bloom start-of-bloom-Ocimene\par
-    ]\par
-    set has-seed? TRUE\par
-  ]\par
-  ;for random number between 0 and the specified seed count: plant Benzaldehyde seeds...\par
-  ask n-of number-of-Benzaldehyde patches with [has-seed? = FALSE]\par
-  [;plant a Benzaldehyde seed (green)\par
-    sprout-seeds 1 [\par
-      set color green\par
-      set size 1\par
-      set species 4\par
-      set shape "circle"\par
-      set lifespan lifespan-Benzaldehyde\par
-      set nectar-regeneration Benzaldehyde-nectar-regeneration\par
-      set start-of-bloom start-of-bloom-Benzaldehyde\par
-    ]\par
-    set has-seed? TRUE\par
-  ]\par
-end\par
-\highlight0\par
-\highlight1 ;set a seed to bloom if the next tick is in the correct season\par
-to flowers-bloom\par
-  ask seeds [\par
-    if (ticks + 1) mod 5000 > start-of-bloom\par
-     [if random 1000 < 7 ;randomly have the flower bloom 7/1000 chance\par
-        [hatch-a-flower\par
-         die;kill the seed\par
-        ]\par
-      ]\par
-  ]\par
-end\par
-\par
-\par
-to hatch-a-flower  ;this is a seeds routine\par
-  hatch-flowers 1\par
-     [set shape "flower"\par
-        set size 2\par
-        set flower-nectar 0\par
-        set age 0\par
-        set flower-block 20\par
-      ]\par
-end  ; end hatch-a-flower\par
-\highlight0\par
-\par
-;have flower produce nectar and increase age\par
-to make-nectar\par
-  ask flowers [\par
-    set age age + 1\par
-    \highlight1 if flower-nectar < 100 [\par
-      set flower-nectar flower-nectar + nectar-regeneration\par
-    ]\par
-\highlight0   ]\par
-end\par
-\par
-;collect nectar from the chosen flower\par
-to collect-nectar\par
-  ask bees [\par
-    if chosen-flower != NOBODY [\par
-      if distance chosen-flower < 1 [\par
-        move-to chosen-flower\par
-\par
-        \highlight1 set carry-nectar carry-nectar + [flower-nectar] of chosen-flower\par
-\highlight0         ;set the flower nectar to 0 and check if blocked\par
-        ask chosen-flower [\highlight1\par
-          set flower-nectar 0\par
-\highlight0           ifelse color = [pollen-color] of myself\par
-          [if flower-seeds < flower-block [set flower-seeds flower-seeds + 1]]   ; flowers can make a max of flower-block seeds\par
-          [set flower-block flower-block - 1]  ; each time the wrong pollen is transmitted, a potential seed is blocked\par
-        ]\par
-        set pollen-color [color] of chosen-flower\par
-        set previous-flower chosen-flower\par
-        set chosen-flower NOBODY\par
-        set destination NOBODY\par
-      ]\par
-    ]\par
-  ]\par
-end\par
-\par
-;have the bees teleport to the hive if they've collected over 200 units of nectar\par
-to bees-go-back-to-hive\par
-  if any? bees[\par
-    ask bees [\highlight1\par
-      if carry-nectar > 200 [\par
-        let nectar carry-nectar ;save carry nectar to a temp variable that hives can access\par
-        move-to home-hive ;teleport to hive\par
-        ask home-hive [\par
-          set storage-nectar storage-nectar + nectar\par
-         ; show (word "storage nectar after visit: " storage-nectar)\par
-        ] ;deposit 200 units of nectar\par
-        set carry-nectar  0\par
-        set heading random 360\par
-      ]\par
-\highlight0     ]\par
-  ]\par
-end\par
-\par
-\par
-;make bees per hive\par
-to make-bees\par
-  ask hives [\par
-    hatch-bees starting-number-of-bees [\par
-      set home-hive myself\par
-      set size 1\par
-      set shape "bee"\par
-      set age 0\par
-      \highlight1 set carry-nectar 0\par
-\highlight0       set chosen-flower NOBODY\par
-      set previous-flower NOBODY\par
-      set destination NOBODY\par
-      set pollen-color black\par
-      set busy false\par
-      set heading random 360 ; liz added\par
-    ]\par
-  ]\par
-end\par
-\par
-;make new bees in relation to the amount of nectar collected\par
-to make-new-bees\par
-  ask hives [\par
-    ;if the hive has access nectar then produce more bees\par
-    while [\highlight1 storage-nectar \highlight0 > 2500 and ticks mod 5000 < 4000] [ ;Note how bees arent made between ticks 4000 and 5000 \par
-      set storage-nectar storage-nectar - 2500\par
-      hatch-bees 1 [\par
-        set home-hive myself\par
-        set size 1\par
-        set shape "bee"\par
-        set age 0\highlight1\par
-        set carry-nectar 0\par
-\highlight0         set chosen-flower NOBODY\par
-        set previous-flower NOBODY\par
-        set destination NOBODY\par
-        set pollen-color black\par
-        set heading random 360\par
-        set busy false\par
-      ]\par
-    ]\par
-  ]\par
-end\par
-\par
-;bee movement\par
-to move-bees\par
-    ask bees [\par
-      ifelse destination = NOBODY [right (60 - random 120)] ;random movement if no flower is chosen\par
-      [face destination] ;move towards chosen flower\par
-      forward 1\par
-  ]\par
-end\par
-\par
-;check if flowers should die (only if their age is greater than their lifespan)\par
-to flowers-breed\par
-  ask flowers [\par
-    if age > lifespan\par
-      [die\par
-      ]\par
-  ]\par
-end\par
-\par
-;bees grow and\par
-to bees-grow\par
-  let life 1000\par
-  ask bees [\par
-    set age age + 1\par
-    if age > life and random 100 < 1 [\par
-      die\par
-    ]\par
-  ]\par
-end\par
-}
- 
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+;Defined Breeds [p}{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+l}{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+ural singular]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+breed [seeds seed]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+breed [bees bee]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+breed [flowers flower]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+breed [hives hive]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar\rtlch \ltrch\loch\fs16\lang9\loch\f5
+
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+;attributes of all breeds}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+turtles-own [}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+species ;specify the type of breed}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+age }
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar\rtlch \ltrch\loch\fs16\lang9\loch\f5
+
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+;attributes of Bees}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+bees-own [}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+hive-location}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+chosen-flower}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+previous-flower}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+destination}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+home-hive}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+pollen-color}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+busy                     ;is-busy boolean}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+collection-start-time}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+current-flower}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+carry-nectar}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar\rtlch \ltrch\loch\fs16\lang9\loch\f5
+
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+;attributes of Seeds}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+seeds-own [}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+lifespan}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+nectar-regeneration}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+start-of-bloom}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar\rtlch \ltrch\loch\fs16\lang9\loch\f5
+
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+;attributes of flowers}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+flowers-own [}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+flower-seeds}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+flower-block}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+lifespan}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+nectar-regeneration}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+  }{{\*\bkmkstart __DdeLink__1606_130001178}\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5{\*\bkmkend __DdeLink__1606_130001178}
+start-of-bloom}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+flower-nectar}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar\rtlch \ltrch\loch\fs16\lang9\loch\f5
+
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+;patches attributes}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+patches-own [has-seed?]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+hives-own [storage-nectar]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar\rtlch \ltrch\loch\fs16\lang9\loch\f5
+
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+;On set setup button press}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+to setup}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+clear-all ;clear-all objects}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+reset-ticks ;reset tickes}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+setup-patches ;set patch color and has seed to false}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+make-seeds ;place seeds}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+make-hives ;place hives}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+make-bees ;make bees}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+end}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar\rtlch \ltrch\loch\fs16\lang9\loch\f5
+
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+;function to set hives on initialization}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+to make-hives}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+;for loop to place hives}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+let i 1 ;i determines type of the hive}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+repeat 2[}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+    }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+create-hives 1 [}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+setxy random-xcor random-ycor}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set size 5}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set shape "beehive"}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+ifelse i = 2 [set color yellow] [set color orange] }
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+;if i = 2 then hive is yellow otherwise orange}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set storage-nectar 0}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set species i              ;set species # to i}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+    }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+    }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set i i + 1}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+end}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar\rtlch \ltrch\loch\fs16\lang9\loch\f5
+
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+;function to make changes to patches}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+to setup-patches}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+ask patches [}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+    }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set pcolor green - 3  ;set the color of the patch}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+    }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set has-seed? FALSE ;set has-seed to false}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+end}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar\rtlch \ltrch\loch\fs16\lang9\loch\f5
+
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar\rtlch \ltrch\loch\fs16\lang9\loch\f5
+
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+;go button press function}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+to go}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+if (ticks + 1) mod 5000 = 0 [new-season]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+ }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+;if the next tick is divisible by 5000 set change the season}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+flowers-bloom ;bloom flowers}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+make-nectar ;make nectar}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+;if bees havent chosen a flower, choose oen}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+ask bees [}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+if chosen-flower = NOBODY [}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+choose-flower}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+]]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+move-bees   ;move the bees}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+collect-nectar ;collect nectar}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+bees-go-back-to-hive ;have bees go back to hive if need be}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+make-new-bees ;make a new bee}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+flowers-breed ;make new flowers}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+bees-grow ;bees grow}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+tick ;set a new tick}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+end}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar\rtlch \ltrch\loch\fs16\lang9\loch\f5
+
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar\rtlch \ltrch\loch\fs16\lang9\loch\f5
+
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar\rtlch \ltrch\loch\fs16\lang9\loch\f5
+
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+;Reset the sliders to default values}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+to defaults}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set starting-number-of-bees 30}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set bee-vision-length 7}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set bee-vision-degrees 45}{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+ }
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar\rtlch \ltrch\loch\fs16\lang9\loch\f5
+
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set Bee1-Pref-Pinene 80}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set Bee1-Pref-Limonene 60}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set Bee1-Pref-Ocimene 35}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set Bee1-Pref-Benzaldehyde 20}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar\rtlch \ltrch\loch\fs16\lang9\loch\f5
+
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set Bee2-Pref-Pinene 10}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set Bee2-Pref-Limonene 60}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set Bee2-Pref-Ocimene 40}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set Bee2-Pref-Benzaldehyde 20}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar\rtlch \ltrch\loch\fs16\lang9\loch\f5
+
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set number-of-Pinene 100}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set number-of-Limonene 100}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set number-of-Ocimene 100}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set number-of-Benzaldehyde 100}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar\rtlch \ltrch\loch\fs16\lang9\loch\f5
+
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set Pinene-nectar-regeneration 10}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set Limonene-nectar-regeneration 8}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set Ocimene-nectar-regeneration 5}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set Benzaldehyde-nectar-regeneration 5}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar\rtlch \ltrch\loch\fs16\lang9\loch\f5
+
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set lifespan-Pinene 2500}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set lifespan-Limonene 2500}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set lifespan-Ocimene 2500}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set lifespan-Benzaldehyde 2500}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set start-of-bloom-Pinene 3000}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set start-of-bloom-Limonene 1000}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set start-of-bloom-Ocimene 3000}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set start-of-bloom-Benzaldehyde 500}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+end}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar\rtlch \ltrch\loch\fs16\lang9\loch\f5
+
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+;change to new season}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+to new-season}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+show "got to new season"}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+ask flowers[}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+    }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set flower-nectar 0 ;reset flower nectar to 0 before dieing}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+    }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+die ;all flowers die regardless of the flowers lifespan}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+] ;kill all flowers}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+ask bees [}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+    }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set carry-nectar 0 ;reset flower nectar to 0 before dieing}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+    }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+die}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+] ;kill all bees}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+setup-patches ;set up patches}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+make-seeds ;make new seeds}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+make-new-bees ;make bees in respect to nector}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+ask hives[}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+show (word "Hive nectar values: Hive1 " storage-nectar " Hive2: "  storage-nectar)}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+end}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar\rtlch \ltrch\loch\fs16\lang9\loch\f5
+
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar\rtlch \ltrch\loch\fs16\lang9\loch\f5
+
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar\rtlch \ltrch\loch\fs16\lang9\loch\f5
+
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+;have bees choose a flower}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+to choose-flower}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+let temp-flower previous-flower ;save previous flower into a temp variable}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar\rtlch \ltrch\loch\fs16\lang9\loch\f5
+
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+;let flower list be equivilent to the list of flowers in the bee's line of site not including the previous flower}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+let flower-list flowers in-cone bee-vision-length bee-vision-degrees with [self != temp-flower]   ;Liz added cone-length cone-degrees and sliders}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+if any? flower-list ;if there are any flowers in that list}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+[}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+    }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+let species-seen sort remove-duplicates [species] of flower-list ;remove the duplicates in the list}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+    }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+let best-species 0 ;reset bee's favorite species}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+    }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+foreach species-seen [i -> if prob-species i > prob-species best-species [set best-species i]] ;let the best flower of the bee be the best on in the flower list}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+    }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+let best-flower one-of (flower-list with [species = best-species])}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+    }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set destination best-flower ;go in the direction to the best flower}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+    }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set chosen-flower best-flower ;set chosen flower to the bestone}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar\rtlch \ltrch\loch\fs16\lang9\loch\f5
+
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+end}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar\rtlch \ltrch\loch\fs16\lang9\loch\f5
+
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+;get the prefered species per bee type}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+to-report prob-species [spnum]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+;for species 1}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+if species = 1 [}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+if spnum = 0 [report 0]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+if spnum = 1 [report Bee1-Pref-Pinene]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+if spnum = 2 [report Bee1-Pref-Limonene]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+if spnum = 3 [report Bee1-Pref-Ocimene]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+if spnum = 4 [report Bee1-Pref-Benzaldehyde]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+;for species 2}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+if species = 2 [}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+if spnum = 0 [report 0]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+if spnum = 1 [report Bee2-Pref-Pinene]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+if spnum = 2 [report Bee2-Pref-Limonene]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+if spnum = 3 [report Bee2-Pref-Ocimene]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+if spnum = 4 [report Bee2-Pref-Benzaldehyde]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+end}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar\rtlch \ltrch\loch\fs16\lang9\loch\f5
+
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+;make seeds for each type of flower}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+to make-seeds}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+;for random number between 0 and the specified seed count: plant Pinene seeds...}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+ask n-of number-of-Pinene patches with [has-seed? = FALSE]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+    }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+[;plant a Pinene seed (white/yellow)}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+    }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+sprout-seeds 1 [}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set color white}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set size 1}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set species 1}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set shape "circle"}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set lifespan lifespan-Pinene}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set nectar-regeneration Pinene-nectar-regeneration}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set start-of-bloom start-of-bloom-Pinene}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+    }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+    }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set has-seed? TRUE}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+;for random number between 0 and the specified seed count: plant Limonene seeds...}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+   }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+ask n-of number-of-Limonene patches with [has-seed? = FALSE]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+[;plant a Limonene seed (red)}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+    }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+sprout-seeds 1 [}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set color red}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set size 1}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set shape "circle"}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set species 2}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set lifespan lifespan-Limonene}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set nectar-regeneration Limonene-nectar-regeneration}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set start-of-bloom start-of-bloom-Limonene}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+    }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+    }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set has-seed? TRUE}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+   }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+;for random number between 0 and the specified seed count: plant Ocimene seeds...}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+ask n-of number-of-Ocimene patches with [has-seed? = FALSE]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+[;plant a Ocimene seed (blue/cyan)}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+    }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+sprout-seeds 1 [}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set color cyan}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set size 1}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set species 3}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set shape "circle"}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set lifespan lifespan-Ocimene}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set nectar-regeneration Ocimene-nectar-regeneration}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set start-of-bloom start-of-bloom-Ocimene}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+    }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+    }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set has-seed? TRUE}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+;for random number between 0 and the specified seed count: plant Benzaldehyde seeds...}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+ask n-of number-of-Benzaldehyde patches with [has-seed? = FALSE]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+[;plant a Benzaldehyde seed (green)}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+    }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+sprout-seeds 1 [}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set color green}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set size 1}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set species 4}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set shape "circle"}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set lifespan lifespan-Benzaldehyde}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set nectar-regeneration Benzaldehyde-nectar-regeneration}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set start-of-bloom start-of-bloom-Benzaldehyde}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+    }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+    }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set has-seed? TRUE}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+end}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar\rtlch \ltrch\loch\fs16\lang9\loch\f5
+
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+;set a seed to bloom if the next tick is in the correct season}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+to flowers-bloom}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+ask seeds [}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+    }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+if (ticks + 1) mod 5000 > start-of-bloom}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+     }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+[if random 1000 < 7 ;randomly have the flower bloom 7/1000 chance}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+        }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+[hatch-a-flower}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+         }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+die;kill the seed}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+        }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+end}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+to hatch-a-flower  ;this is a seeds routine}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+hatch-flowers 1}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+     }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+[set shape "flower"}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+        }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set size 2}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+        }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set flower-nectar 0}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+        }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set age 0}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+        }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set flower-block 20}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+end  ; end hatch-a-flower}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar\rtlch \ltrch\loch\fs16\lang9\loch\f5
+
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar\rtlch \ltrch\loch\fs16\lang9\loch\f5
+
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+;have flower produce nectar and increase age}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+to make-nectar}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+ask flowers [}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+    }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set age age + 1}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+    }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+if flower-nectar < 100 [}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set flower-nectar flower-nectar + nectar-regeneration}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+    }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+end}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar\rtlch \ltrch\loch\fs16\lang9\loch\f5
+
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+;collect nectar from the chosen flower}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+to collect-nectar}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+ask bees [}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+    }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+if chosen-flower != NOBODY [}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+if distance chosen-flower < 1 [}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+        }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+move-to chosen-flower}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar\rtlch \ltrch\loch\fs16\lang9\loch\f5
+
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+        }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set carry-nectar carry-nectar + [flower-nectar] of chosen-flower}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+        }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+;set the flower nectar to 0 and check if blocked}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+        }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+ask chosen-flower [}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+          }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set flower-nectar 0}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+          }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+ifelse color = [pollen-color] of myself}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+          }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+[if flower-seeds < flower-block [set flower-seeds flower-seeds + 1]]   ; flowers can make a max of flower-block seeds}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+          }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+[set flower-block flower-block - 1]  ; each time the wrong pollen is transmitted, a potential seed is blocked}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+        }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+        }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set pollen-color [color] of chosen-flower}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+        }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set previous-flower chosen-flower}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+        }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set chosen-flower NOBODY}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+        }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set destination NOBODY}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+    }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+end}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar\rtlch \ltrch\loch\fs16\lang9\loch\f5
+
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+;have the bees teleport to the hive if they've collected over 200 units of nectar}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+to bees-go-back-to-hive}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+if any? bees[}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+    }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+ask bees [}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+if carry-nectar > 200 [}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+        }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+let nectar carry-nectar ;save carry nectar to a temp variable that hives can access}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+        }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+move-to home-hive ;teleport to hive}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+        }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+ask home-hive [}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+          }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set storage-nectar storage-nectar + nectar}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+         }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+; show (word "storage nectar after visit: " storage-nectar)}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+        }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+] ;deposit 200 units of nectar}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+        }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set carry-nectar  0}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+        }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set heading random 360}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+    }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+end}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar\rtlch \ltrch\loch\fs16\lang9\loch\f5
+
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar\rtlch \ltrch\loch\fs16\lang9\loch\f5
+
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+;make bees per hive}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+to make-bees}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+ask hives [}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+    }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+hatch-bees starting-number-of-bees [}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set home-hive myself}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set size 1}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set shape "bee"}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set age 0}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set carry-nectar 0}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set chosen-flower NOBODY}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set previous-flower NOBODY}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set destination NOBODY}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set pollen-color black}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set busy false}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set heading random 360 ; liz added}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+    }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+end}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar\rtlch \ltrch\loch\fs16\lang9\loch\f5
+
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+;make new bees in relation to the amount of nectar collected}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+to make-new-bees}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+ask hives [}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+    }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+;if the hive has access nectar then produce more bees}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+    }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+while [}{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+storage-nectar }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+> 2500 and ticks mod 5000 < 4000] [ ;Note how bees arent made between ticks 4000 and 5000 }
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set storage-nectar storage-nectar - 2500}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+hatch-bees 1 [}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+        }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set home-hive myself}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+        }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set size 1}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+        }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set shape "bee"}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+        }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set age 0}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\highlight4\rtlch \ltrch\fs16\lang9\loch\f5
+        }{\highlight4\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set carry-nectar 0}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+        }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set chosen-flower NOBODY}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+        }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set previous-flower NOBODY}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+        }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set destination NOBODY}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+        }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set pollen-color black}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+        }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set heading random 360}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+        }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set busy false}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+    }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+end}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar\rtlch \ltrch\loch\fs16\lang9\loch\f5
+
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+;bee movement}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+to move-bees}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+    }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+ask bees [}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+ifelse destination = NOBODY [right (60 - random 120)] ;random movement if no flower is chosen}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+[face destination] ;move towards chosen flower}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+forward 1}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+end}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar\rtlch \ltrch\loch\fs16\lang9\loch\f5
+
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+;check if flowers should die (only if their age is greater than their lifespan)}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+to flowers-breed}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+ask flowers [}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+    }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+if age > lifespan}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+[die}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+end}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar\rtlch \ltrch\loch\fs16\lang9\loch\f5
+
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+;bees grow and}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+to bees-grow}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+let life 1000}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+ask bees [}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+    }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+set age age + 1}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+    }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+if age > life and random 100 < 1 [}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+      }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+die}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+    }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\fs16\lang9\loch\f5
+  }{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+]}
+\par \pard\plain \s0\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af6\langfe1081\dbch\af6\afs24\alang1081\loch\f3\fs24\lang1033\sl240\slmult1\ql\nowidctlpar\hyphpar0\sb0\sa0\ltrpar{\rtlch \ltrch\loch\fs16\lang9\loch\f5
+end}
+\par }

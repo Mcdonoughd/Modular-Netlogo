@@ -112,6 +112,43 @@ to go
   tick ;set a new tick
 end
 
+;Reset the sliders to default values
+to defaults
+  set starting-number-of-bees 30
+  set bee-vision-length 7
+  set bee-vision-degrees 45
+
+  set Bee1-Pref-Pinene 80
+  set Bee1-Pref-Limonene 60
+  set Bee1-Pref-Ocimene 35
+  set Bee1-Pref-Benzaldehyde 20
+
+  set Bee2-Pref-Pinene 10
+  set Bee2-Pref-Limonene 60
+  set Bee2-Pref-Ocimene 40
+  set Bee2-Pref-Benzaldehyde 20
+
+  set number-of-Pinene 100
+  set number-of-Limonene 100
+  set number-of-Ocimene 100
+  set number-of-Benzaldehyde 100
+
+  set Pinene-nectar-regeneration 10
+  set Limonene-nectar-regeneration 8
+  set Ocimene-nectar-regeneration 5
+  set Benzaldehyde-nectar-regeneration 5
+
+  set lifespan-Pinene 2500
+  set lifespan-Limonene 2500
+  set lifespan-Ocimene 2500
+  set lifespan-Benzaldehyde 2500
+
+  set start-of-bloom-Pinene 3000
+  set start-of-bloom-Limonene 1000
+  set start-of-bloom-Ocimene 3000
+  set start-of-bloom-Benzaldehyde 500
+end
+
 ;change to new season
 to new-season
   show "got to new season"
@@ -454,10 +491,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-14
-100
-293
-133
+15
+122
+296
+155
 starting-number-of-bees
 starting-number-of-bees
 1
@@ -486,10 +523,10 @@ NIL
 1
 
 SWITCH
-312
-463
-446
-496
+322
+465
+456
+498
 show-energy?
 show-energy?
 1
@@ -586,7 +623,7 @@ Limonene-nectar-regeneration
 Limonene-nectar-regeneration
 0
 10
-6.0
+8.0
 1
 1
 NIL
@@ -601,7 +638,7 @@ Ocimene-nectar-regeneration
 Ocimene-nectar-regeneration
 0
 10
-6.0
+5.0
 1
 1
 NIL
@@ -616,7 +653,7 @@ Benzaldehyde-nectar-regeneration
 Benzaldehyde-nectar-regeneration
 0
 10
-6.0
+5.0
 1
 1
 NIL
@@ -631,7 +668,7 @@ start-of-bloom-Pinene
 start-of-bloom-Pinene
 0
 4000
-500.0
+3000.0
 100
 1
 NIL
@@ -661,7 +698,7 @@ start-of-bloom-Ocimene
 start-of-bloom-Ocimene
 0
 4000
-1500.0
+3000.0
 100
 1
 NIL
@@ -676,7 +713,7 @@ start-of-bloom-Benzaldehyde
 start-of-bloom-Benzaldehyde
 0
 4000
-1500.0
+500.0
 100
 1
 NIL
@@ -691,7 +728,7 @@ lifespan-Pinene
 lifespan-Pinene
 0
 3000
-2000.0
+2500.0
 100
 1
 NIL
@@ -706,7 +743,7 @@ lifespan-Limonene
 lifespan-Limonene
 0
 3000
-2000.0
+2500.0
 100
 1
 NIL
@@ -721,7 +758,7 @@ lifespan-Ocimene
 lifespan-Ocimene
 0
 3000
-2000.0
+2500.0
 100
 1
 NIL
@@ -736,7 +773,7 @@ lifespan-Benzaldehyde
 lifespan-Benzaldehyde
 0
 3000
-2000.0
+2500.0
 100
 1
 NIL
@@ -758,21 +795,36 @@ true
 true
 "" ""
 PENS
-"species 1" 1.0 0 -1184463 true "" "let fl1 count flowers with [species = 1]\nifelse fl1 > 1 \n[plotxy ticks mean [flower-nectar] of flowers with [species = 1]\nplot-pen-down]\n[plot-pen-up]"
-"species 2" 1.0 0 -2674135 true "" "let fl2 count flowers with [species = 2]\nifelse fl2 > 1 \n[plotxy ticks mean [flower-nectar] of flowers with [species = 2]\nplot-pen-down]\n[plot-pen-up]"
-"species 3" 1.0 0 -11221820 true "" "let fl3 count flowers with [species = 3]\nifelse fl3 > 1 \n[plotxy ticks mean [flower-nectar] of flowers with [species = 3]\nplot-pen-down]\n[plot-pen-up]"
-"species 4" 1.0 0 -10899396 true "" "let fl4 count flowers with [species = 4]\nifelse fl4 > 1 \n[plotxy ticks mean [flower-nectar] of flowers with [species = 4]\nplot-pen-down]\n[plot-pen-up]"
+"Pinene" 1.0 0 -1184463 true "" "let fl1 count flowers with [species = 1]\nifelse fl1 > 1\n[plotxy ticks mean [flower-nectar] of flowers with [species = 1]\nplot-pen-down]\n[plot-pen-up]"
+"Limonene" 1.0 0 -2674135 true "" "let fl2 count flowers with [species = 2]\nifelse fl2 > 1 \n[plotxy ticks mean [flower-nectar] of flowers with [species = 2]\nplot-pen-down]\n[plot-pen-up]"
+"Ocimene" 1.0 0 -11221820 true "" "let fl3 count flowers with [species = 3]\nifelse fl3 > 1 \n[plotxy ticks mean [flower-nectar] of flowers with [species = 3]\nplot-pen-down]\n[plot-pen-up]"
+"Benzaldehyde" 1.0 0 -10899396 true "" "let fl4 count flowers with [species = 4]\nifelse fl4 > 1 \n[plotxy ticks mean [flower-nectar] of flowers with [species = 4]\nplot-pen-down]\n[plot-pen-up]"
 
 SLIDER
-13
-173
+10
+261
+291
 294
-206
 Bee1-Pref-Pinene
 Bee1-Pref-Pinene
 0
 100
-85.0
+80.0
+1
+1
+NIL
+HORIZONTAL
+
+SLIDER
+8
+298
+290
+331
+Bee1-Pref-Limonene
+Bee1-Pref-Limonene
+0
+100
+60.0
 1
 1
 NIL
@@ -780,39 +832,24 @@ HORIZONTAL
 
 SLIDER
 11
-210
-293
-243
-Bee1-Pref-Limonene
-Bee1-Pref-Limonene
+335
+291
+368
+Bee1-Pref-Ocimene
+Bee1-Pref-Ocimene
 0
 100
-64.0
+35.0
 1
 1
 NIL
 HORIZONTAL
 
 SLIDER
-14
-247
-294
-280
-Bee1-Pref-Ocimene
-Bee1-Pref-Ocimene
-0
-100
-36.0
-1
-1
-NIL
-HORIZONTAL
-
-SLIDER
-13
-297
-292
-330
+10
+385
+289
+418
 Bee1-Pref-Benzaldehyde
 Bee1-Pref-Benzaldehyde
 0
@@ -843,10 +880,10 @@ PENS
 "Bee Species 2" 1.0 0 -1184463 true "" "plot count bees with [species = 2]"
 
 SLIDER
-9
-377
-289
-410
+6
+465
+286
+498
 Bee2-Pref-Pinene
 Bee2-Pref-Pinene
 0
@@ -858,45 +895,45 @@ NIL
 HORIZONTAL
 
 SLIDER
-9
-416
-288
-449
+6
+504
+285
+537
 Bee2-Pref-Limonene
 Bee2-Pref-Limonene
 0
 100
-64.0
+60.0
 1
 1
 NIL
 HORIZONTAL
 
 SLIDER
-9
-455
-287
-488
+6
+543
+284
+576
 Bee2-Pref-Ocimene
 Bee2-Pref-Ocimene
 0
 100
-42.0
+40.0
 1
 1
 NIL
 HORIZONTAL
 
 SLIDER
-11
-494
-288
-527
+8
+582
+285
+615
 Bee2-Pref-Benzaldehyde
 Bee2-Pref-Benzaldehyde
 0
 100
-14.0
+20.0
 1
 1
 NIL
@@ -962,30 +999,30 @@ Benzaldehyde Flower Variables
 1
 
 TEXTBOX
-109
-145
-259
-163
+98
+240
+248
+258
 Bee 1 Variables
 12
 0.0
 1
 
 TEXTBOX
-99
-355
-249
-373
+96
+443
+246
+461
 Bee 2 Variables
 12
 0.0
 1
 
 SLIDER
-451
-464
-589
-497
+13
+156
+295
+189
 bee-vision-degrees
 bee-vision-degrees
 0
@@ -997,10 +1034,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-597
-464
-721
-497
+14
+191
+296
+224
 bee-vision-length
 bee-vision-length
 0
@@ -1010,6 +1047,33 @@ bee-vision-length
 1
 NIL
 HORIZONTAL
+
+BUTTON
+583
+465
+709
+498
+Reset-Sliders
+defaults
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+TEXTBOX
+87
+101
+237
+119
+Common Bee Variables
+12
+0.0
+1
 
 @#$#@#$#@
 ## WHAT IS IT?

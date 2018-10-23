@@ -110,16 +110,49 @@ to go
   tick
 end
 
+;Reset the sliders to default values
+to defaults
+  set starting-number-of-bees 30
+  set bee-wait-time 5
+  set bee-vision-length 7
+  set bee-vision-degrees 45
+
+  set Bee1-Pref-Pinene 80
+  set Bee1-Pref-Limonene 60
+  set Bee1-Pref-Ocimene 35
+  set Bee1-Pref-Benzaldehyde 20
+
+  set Bee2-Pref-Pinene 10
+  set Bee2-Pref-Limonene 60
+  set Bee2-Pref-Ocimene 40
+  set Bee2-Pref-Benzaldehyde 20
+
+  set number-of-Pinene 100
+  set number-of-Limonene 100
+  set number-of-Ocimene 100
+  set number-of-Benzaldehyde 100
+
+  set Pinene-nectar-regeneration 10
+  set Limonene-nectar-regeneration 8
+  set Ocimene-nectar-regeneration 5
+  set Benzaldehyde-nectar-regeneration 5
+
+  set lifespan-Pinene 2500
+  set lifespan-Limonene 2500
+  set lifespan-Ocimene 2500
+  set lifespan-Benzaldehyde 2500
+
+  set start-of-bloom-Pinene 3000
+  set start-of-bloom-Limonene 1000
+  set start-of-bloom-Ocimene 3000
+  set start-of-bloom-Benzaldehyde 500
+end
+
+
 to new-season
   show "got to new season"
-  ask flowers[
-    set flower-nectar 0 ;reset flower nectar to 0 before dieing
-    die ;all flowers die regardless of the flowers lifespan
-  ] ;kill all flowers
-  ask bees [
-    set carry-nectar 0 ;reset flower nectar to 0 before dieing
-    die
-  ] ;kill all bees
+  ask flowers[ die ] ;kill all flowers
+  ask bees [ die ] ;kill all bees
   setup-patches ;set up patches
   make-seeds ;make new seeds
   make-new-bees ;make bees in respect to nector
@@ -302,7 +335,7 @@ end
 
 to make-bees
   ask hives [
-    hatch-bees number-of-bees [
+    hatch-bees starting-number-of-bees [
       set home-hive myself
       set size 1
       set shape "bee"
@@ -318,9 +351,9 @@ to make-bees
   ]
 end
 
+;Have hives make new bees when nectar is above the threshhold and is the right season
 to make-new-bees
   ask hives [
-
     while [storage-nectar > 2500 and ticks mod 5000 < 4000] [
       set storage-nectar storage-nectar - 2500
       hatch-bees 1 [
@@ -360,6 +393,7 @@ to-report collecting-nectar
   ]
   report true
 end
+
 ;moving bees only of they are not currently collecting nectar
 to move-bees
     ask bees [
@@ -392,13 +426,13 @@ to bees-grow
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
-322
+239
 10
-674
-363
+728
+500
 -1
 -1
-5.64
+7.9
 1
 10
 1
@@ -421,7 +455,7 @@ ticks
 BUTTON
 9
 10
-84
+75
 76
 NIL
 setup
@@ -436,9 +470,9 @@ NIL
 1
 
 BUTTON
-100
+89
 10
-178
+157
 75
 NIL
 go
@@ -453,10 +487,10 @@ NIL
 1
 
 SLIDER
-679
-26
-851
-59
+732
+33
+939
+66
 number-of-Pinene
 number-of-Pinene
 0
@@ -468,12 +502,12 @@ NIL
 HORIZONTAL
 
 SLIDER
-167
-86
-312
-120
-number-of-bees
-number-of-bees
+6
+96
+234
+129
+starting-number-of-bees
+starting-number-of-bees
 1
 30
 30.0
@@ -483,9 +517,9 @@ NIL
 HORIZONTAL
 
 BUTTON
-192
+168
 10
-271
+237
 75
 step
 go
@@ -500,10 +534,10 @@ NIL
 1
 
 SWITCH
-319
-374
-451
-408
+261
+503
+393
+536
 show-energy?
 show-energy?
 1
@@ -511,9 +545,9 @@ show-energy?
 -1000
 
 PLOT
-1066
+1198
 10
-1422
+1540
 160
 Flower Population
 Time
@@ -532,10 +566,10 @@ PENS
 "Benzaldehyde" 1.0 0 -10899396 true "" "plot count flowers with [species = 4]"
 
 SLIDER
-870
-28
-1042
-61
+964
+33
+1191
+66
 number-of-Limonene
 number-of-Limonene
 0
@@ -547,10 +581,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-862
-199
-1058
-232
+956
+204
+1194
+237
 number-of-Benzaldehyde
 number-of-Benzaldehyde
 0
@@ -562,10 +596,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-677
-197
-855
-230
+730
+204
+941
+237
 number-of-Ocimene
 number-of-Ocimene
 0
@@ -577,10 +611,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-678
-61
-852
-94
+731
+68
+945
+101
 Pinene-nectar-regeneration
 Pinene-nectar-regeneration
 0
@@ -592,70 +626,70 @@ NIL
 HORIZONTAL
 
 SLIDER
-871
-65
-1043
-98
+965
+70
+1191
+103
 Limonene-nectar-regeneration
 Limonene-nectar-regeneration
 0
 10
-6.0
+8.0
 1
 1
 NIL
 HORIZONTAL
 
 SLIDER
-678
-232
-855
-265
+731
+239
+949
+272
 Ocimene-nectar-regeneration
 Ocimene-nectar-regeneration
 0
 10
-6.0
+5.0
 1
 1
 NIL
 HORIZONTAL
 
 SLIDER
-862
-234
-1057
-267
+956
+239
+1203
+272
 Benzaldehyde-nectar-regeneration
 Benzaldehyde-nectar-regeneration
 0
 10
-6.0
+5.0
 1
 1
 NIL
 HORIZONTAL
 
 SLIDER
-678
-96
-852
-129
+731
+103
+939
+136
 start-of-bloom-Pinene
 start-of-bloom-Pinene
 0
 4000
-500.0
+3000.0
 100
 1
 NIL
 HORIZONTAL
 
 SLIDER
-871
-99
-1044
-132
+965
+104
+1191
+137
 start-of-bloom-Limonene
 start-of-bloom-Limonene
 0
@@ -667,99 +701,99 @@ NIL
 HORIZONTAL
 
 SLIDER
-677
-266
-854
-299
+730
+273
+943
+306
 start-of-bloom-Ocimene
 start-of-bloom-Ocimene
 0
 4000
-1500.0
+3000.0
 100
 1
 NIL
 HORIZONTAL
 
 SLIDER
-862
-268
-1058
-301
+956
+273
+1194
+306
 start-of-bloom-Benzaldehyde
 start-of-bloom-Benzaldehyde
 0
 4000
-1500.0
+500.0
 100
 1
 NIL
 HORIZONTAL
 
 SLIDER
-679
-130
-853
-163
+732
+137
+940
+170
 lifespan-Pinene
 lifespan-Pinene
 0
 3000
-2000.0
+2500.0
 100
 1
 NIL
 HORIZONTAL
 
 SLIDER
-872
-133
-1044
-166
+966
+138
+1191
+171
 lifespan-Limonene
 lifespan-Limonene
 0
 3000
-2000.0
+2500.0
 100
 1
 NIL
 HORIZONTAL
 
 SLIDER
-678
-302
-854
-335
+731
+309
+941
+342
 lifespan-Ocimene
 lifespan-Ocimene
 0
 3000
-2000.0
+2500.0
 100
 1
 NIL
 HORIZONTAL
 
 SLIDER
-864
-303
-1059
-336
+958
+308
+1195
+341
 lifespan-Benzaldehyde
 lifespan-Benzaldehyde
 0
 3000
-2000.0
+2500.0
 100
 1
 NIL
 HORIZONTAL
 
 PLOT
-1070
+1201
 163
-1422
+1540
 313
 Mean Flower Nectar Content
 time
@@ -778,55 +812,55 @@ PENS
 "Benzaldehyde" 1.0 0 -10899396 true "" "let fl4 count flowers with [species = 4]\nifelse fl4 > 1 \n[plotxy ticks mean [flower-nectar] of flowers with [species = 4]\nplot-pen-down]\n[plot-pen-up]"
 
 SLIDER
-11
-160
-140
-193
+9
+271
+232
+304
 Bee1-Pref-Pinene
 Bee1-Pref-Pinene
 0
 100
-82.0
+80.0
 1
 1
 NIL
 HORIZONTAL
 
 SLIDER
-11
-200
-142
-233
+9
+311
+230
+344
 Bee1-Pref-Limonene
 Bee1-Pref-Limonene
 0
 100
-64.0
+60.0
 1
 1
 NIL
 HORIZONTAL
 
 SLIDER
-150
-160
-312
-193
-Bee1-Pref-Ocimene
-Bee1-Pref-Ocimene
-0
-100
-37.0
-1
-1
-NIL
-HORIZONTAL
-
-SLIDER
-149
-198
-312
+10
+348
 231
+381
+Bee1-Pref-Ocimene
+Bee1-Pref-Ocimene
+0
+100
+35.0
+1
+1
+NIL
+HORIZONTAL
+
+SLIDER
+9
+386
+230
+419
 Bee1-Pref-Benzaldehyde
 Bee1-Pref-Benzaldehyde
 0
@@ -838,9 +872,9 @@ NIL
 HORIZONTAL
 
 PLOT
-1066
+1201
 324
-1421
+1539
 474
 Bee Population
 Time
@@ -857,12 +891,57 @@ PENS
 "species 2" 1.0 0 -1184463 true "" "plot count bees with [species = 2]"
 
 SLIDER
-13
-294
-150
-327
+8
+461
+227
+494
 Bee2-Pref-Pinene
 Bee2-Pref-Pinene
+0
+100
+10.0
+1
+1
+NIL
+HORIZONTAL
+
+SLIDER
+7
+500
+228
+533
+Bee2-Pref-Limonene
+Bee2-Pref-Limonene
+0
+100
+60.0
+1
+1
+NIL
+HORIZONTAL
+
+SLIDER
+7
+534
+227
+567
+Bee2-Pref-Ocimene
+Bee2-Pref-Ocimene
+0
+100
+40.0
+1
+1
+NIL
+HORIZONTAL
+
+SLIDER
+6
+571
+225
+604
+Bee2-Pref-Benzaldehyde
+Bee2-Pref-Benzaldehyde
 0
 100
 20.0
@@ -871,55 +950,10 @@ Bee2-Pref-Pinene
 NIL
 HORIZONTAL
 
-SLIDER
-12
-333
-150
-366
-Bee2-Pref-Limonene
-Bee2-Pref-Limonene
-0
-100
-73.0
-1
-1
-NIL
-HORIZONTAL
-
-SLIDER
-160
-294
-312
-327
-Bee2-Pref-Ocimene
-Bee2-Pref-Ocimene
-0
-100
-48.0
-1
-1
-NIL
-HORIZONTAL
-
-SLIDER
-159
-331
-312
-364
-Bee2-Pref-Benzaldehyde
-Bee2-Pref-Benzaldehyde
-0
-100
-26.0
-1
-1
-NIL
-HORIZONTAL
-
 PLOT
-1062
+1200
 478
-1426
+1544
 628
 Hive Nectar
 NIL
@@ -936,85 +970,85 @@ PENS
 "Hive 2" 1.0 0 -1184463 true "" "let hive2 hives with [species = 2]\nifelse any? hive2 \n[plotxy ticks mean [storage-nectar] of hives with [species = 2]\nplot-pen-down]\n[plot-pen-up]"
 
 SLIDER
-10
-87
-157
-121
+7
+132
+236
+165
 bee-wait-time
 bee-wait-time
 0
 50
-6.0
+5.0
 1
 1
 NIL
 HORIZONTAL
 
 TEXTBOX
-113
-142
-263
-160
+72
+252
+222
+270
 Bee 1 Preferences
-11
-0.0
-1
-
-TEXTBOX
-114
-269
-264
-287
-Bee 2 Preferences
-11
-0.0
-1
-
-TEXTBOX
-704
-10
-854
-28
-Pinene Flower Variables
-11
-0.0
-1
-
-TEXTBOX
-715
-183
-865
-201
-Ocimene Flower Variables
-11
-0.0
-1
-
-TEXTBOX
-898
 12
-1048
-30
-Limonene Flower Variables
-11
 0.0
 1
 
 TEXTBOX
-897
-183
-1047
-201
+69
+438
+219
+456
+Bee 2 Preferences
+12
+0.0
+1
+
+TEXTBOX
+760
+15
+910
+33
+Pinene Flower Variables
+12
+0.0
+1
+
+TEXTBOX
+756
+186
+935
+216
+Ocimene Flower Variables
+12
+0.0
+1
+
+TEXTBOX
+961
+18
+1132
+48
+Limonene Flower Variables
+12
+0.0
+1
+
+TEXTBOX
+975
+182
+1175
+212
 Benzaldehyde Flower Variables
-11
+12
 0.0
 1
 
 SLIDER
-457
-374
-587
-408
+5
+166
+235
+199
 bee-vision-degrees
 bee-vision-degrees
 0
@@ -1026,10 +1060,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-594
-374
-721
-408
+4
+199
+235
+232
 bee-vision-length
 bee-vision-length
 0
@@ -1039,6 +1073,33 @@ bee-vision-length
 1
 NIL
 HORIZONTAL
+
+TEXTBOX
+62
+82
+212
+100
+Common Bee Variables
+12
+0.0
+1
+
+BUTTON
+559
+501
+697
+534
+Reset-Defaults
+defaults
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
 
 @#$#@#$#@
 ## WHAT IS IT?
