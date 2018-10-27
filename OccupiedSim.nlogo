@@ -1,6 +1,6 @@
 ;OccupiedSim v1.0.0 10/14/2018
 ;This Simulation tests how two Species of Bees
-;interact with different flowers based on the Bee's preverences
+;interact with different flowers based on the Bee's preferences
 ;The flowers also bloom over time over the simulation of different seasons
 ;The flowers start as seeds and can bloom at different times.
 ;Only one bee can be on a flower at a time
@@ -23,12 +23,10 @@ turtles-own [
 
 ;attributes of Bees
 bees-own [
-  hive-location
   chosen-flower
   previous-flower
   destination
   home-hive
-  pollen-color
   collection-start-time
   current-flower
   carry-nectar ;count of nectar the bee is currently carrying
@@ -38,14 +36,12 @@ bees-own [
 ;attributes of Seeds
 seeds-own [
   lifespan
-  nectar-regeneration
   start-of-bloom
+  nectar-regeneration
 ]
 
 ;attributes of flowers
 flowers-own [
-  flower-seeds
-  flower-block
   lifespan
   nectar-regeneration
   occupied
@@ -55,60 +51,6 @@ flowers-own [
 ;add an occupied variable
 patches-own [has-seed?]
 hives-own [storage-nectar]
-
-;On set setup button press
-to setup
-  clear-all ;clear-all objects
-  reset-ticks ;reset tickes
-  setup-patches ;set patch color and has seed to false
-  make-seeds ;place seeds
-  make-hives ;place hives
-  make-bees ;make bees
-end
-
-;function to set hives on initialization
-to make-hives
-  ;for loop to place hives
-  let i 1
-  repeat 2 [
-    create-hives 1 [
-      setxy random-xcor random-ycor
-      set size 5
-      set shape "beehive"
-      ifelse i = 2 [set color yellow] [set color orange]
-      set storage-nectar 0
-      set species i
-    ]
-    set i i + 1
-  ]
-end
-
-
-;set up initial patch state
-to setup-patches
-  ask patches [
-    set pcolor green - 3
-    set has-seed? FALSE
-  ]
-end
-
-
-to go
-  if (ticks + 1) mod 5000 = 0 [new-season] ;check if the current tick is divisible by 500 to mark the new season
-  flowers-bloom
-  make-nectar
-  ask bees [
-  if chosen-flower = NOBODY [
-  choose-flower
-  ]]
-  move-bees
-  collect-nectar
-  bees-go-back-to-hive
-  make-new-bees
-  flowers-breed
-  bees-grow
-  tick
-end
 
 ;Reset the sliders to default values
 to defaults
@@ -148,6 +90,114 @@ to defaults
   set start-of-bloom-Benzaldehyde 500
 end
 
+;On set setup button press
+to setup
+  clear-all ;clear-all objects
+  reset-ticks ;reset tickes
+  setup-patches ;set patch color and has seed to false
+  make-seeds ;place seeds
+  make-hives ;place hives
+  make-bees ;make bees
+end
+
+;set up initial patch state
+to setup-patches
+  ask patches [
+    set pcolor green - 3
+    set has-seed? FALSE
+  ]
+end
+
+;function to set hives on initialization
+to make-hives
+  ;for loop to place hives
+  let i 1
+  repeat 2 [
+    create-hives 1 [
+      setxy random-xcor random-ycor
+      set size 5
+      set shape "beehive"
+      ifelse i = 2 [set color yellow] [set color orange]
+      set storage-nectar 0
+      set species i
+    ]
+    set i i + 1
+  ]
+end
+
+;make seeds for each type of flower
+to make-seeds
+;for random number between 0 and the specified seed count: plant Pinene seeds..
+  ask n-of number-of-Pinene patches with [has-seed? = FALSE]
+    [
+    sprout-seeds 1 [
+      set color white
+      set size 1
+      set species 1
+      set shape "circle"
+      set lifespan lifespan-Pinene
+      set start-of-bloom start-of-bloom-Pinene
+      set nectar-regeneration Pinene-nectar-regeneration
+    ]
+    set has-seed? TRUE
+  ]
+   ask n-of number-of-Limonene patches with [has-seed? = FALSE]
+  [
+    sprout-seeds 1 [
+      set color red
+      set size 1
+      set shape "circle"
+      set species 2
+      set lifespan lifespan-Limonene
+      set start-of-bloom start-of-bloom-Limonene
+      set nectar-regeneration Limonene-nectar-regeneration
+    ]
+    set has-seed? TRUE
+  ]
+  ask n-of number-of-Ocimene patches with [has-seed? = FALSE]
+  [
+    sprout-seeds 1 [
+      set color cyan
+      set size 1
+      set species 3
+      set shape "circle"
+      set lifespan lifespan-Ocimene
+      set start-of-bloom start-of-bloom-Ocimene
+      set nectar-regeneration Ocimene-nectar-regeneration
+    ]
+    set has-seed? TRUE
+  ]
+  ask n-of number-of-Benzaldehyde patches with [has-seed? = FALSE]
+  [
+    sprout-seeds 1 [
+      set color green
+      set size 1
+      set species 4
+      set shape "circle"
+      set lifespan lifespan-Benzaldehyde
+      set start-of-bloom start-of-bloom-Benzaldehyde
+      set nectar-regeneration Benzaldehyde-nectar-regeneration
+    ]
+    set has-seed? TRUE
+  ]
+end
+
+to go
+  if (ticks + 1) mod 5000 = 0 [new-season] ;check if the current tick is divisible by 500 to mark the new season
+  flowers-bloom
+  make-nectar
+  ask bees [
+  if chosen-flower = NOBODY [
+  choose-flower
+  ]]
+  move-bees
+  collect-nectar
+  bees-go-back-to-hive
+  make-new-bees
+  flowers-age
+  bees-grow
+  tick
+end
 
 to new-season
   show "got to new season"
@@ -156,6 +206,62 @@ to new-season
   setup-patches ;set up patches
   make-seeds ;make new seeds
   make-new-bees ;make bees in respect to nector
+end
+
+to flowers-bloom
+  ask seeds [
+    if ticks mod 5000 > start-of-bloom
+     [if random 1000 < 7
+        [hatch-a-flower
+         die]
+      ]
+  ]
+end
+
+to hatch-a-flower  ;this is a seeds routine
+  hatch-flowers 1
+     [set shape "flower"
+        set size 2
+        set flower-nectar 0
+        set age 0
+        set occupied false
+      ]
+end  ; end hatch-a-flower
+
+;check if flowers should die (only if their age is greater than their lifespan)
+to flowers-age
+  ask flowers [
+    if age > lifespan
+      [die
+      ]
+
+  ]
+end
+
+to make-nectar
+  ask flowers [
+    set age age + 1
+    if flower-nectar < 100 [
+      set flower-nectar flower-nectar + nectar-regeneration
+    ]
+  ]
+end
+
+to make-bees
+  ask hives [
+    hatch-bees starting-number-of-bees [
+      set home-hive myself
+      set size 1
+      set shape "bee"
+      set age 0
+      set carry-nectar 0
+      set chosen-flower NOBODY
+      set previous-flower NOBODY
+      set destination NOBODY
+      set current-flower NOBODY
+      set species [species] of myself
+    ]
+  ]
 end
 
 to choose-flower
@@ -176,120 +282,12 @@ to choose-flower
    ; allows the bee to roam and look for a new flower
 end
 
-
-
-to-report prob-species [spnum]
-  if species = 1 [
-  if spnum = 0 [report 0]
-  if spnum = 1 [report Bee1-Pref-Pinene]
-  if spnum = 2 [report Bee1-Pref-Limonene]
-  if spnum = 3 [report Bee1-Pref-Ocimene]
-  if spnum = 4 [report Bee1-Pref-Benzaldehyde]
-  ]
-  if species = 2 [
-   if spnum = 0 [report 0]
-  if spnum = 1 [report Bee2-Pref-Pinene]
-  if spnum = 2 [report Bee2-Pref-Limonene]
-  if spnum = 3 [report Bee2-Pref-Ocimene]
-  if spnum = 4 [report Bee2-Pref-Benzaldehyde]
-  ]
-end
-
-;make seeds for each type of flower
-to make-seeds
-;for random number between 0 and the specified seed count: plant Pinene seeds..
-  ask n-of number-of-Pinene patches with [has-seed? = FALSE]
-    [
-    sprout-seeds 1 [
-      set color white
-      set size 1
-      set species 1
-      set shape "circle"
-      set lifespan lifespan-Pinene
-      set nectar-regeneration Pinene-nectar-regeneration
-      set start-of-bloom start-of-bloom-Pinene
-    ]
-    set has-seed? TRUE
-  ]
-   ask n-of number-of-Limonene patches with [has-seed? = FALSE]
-  [
-    sprout-seeds 1 [
-      set color red
-      set size 1
-      set shape "circle"
-      set species 2
-      set lifespan lifespan-Limonene
-      set nectar-regeneration Limonene-nectar-regeneration
-      set start-of-bloom start-of-bloom-Limonene
-    ]
-    set has-seed? TRUE
-  ]
-  ask n-of number-of-Ocimene patches with [has-seed? = FALSE]
-  [
-    sprout-seeds 1 [
-      set color cyan
-      set size 1
-      set species 3
-      set shape "circle"
-      set lifespan lifespan-Ocimene
-      set nectar-regeneration Ocimene-nectar-regeneration
-      set start-of-bloom start-of-bloom-Ocimene
-    ]
-    set has-seed? TRUE
-  ]
-  ask n-of number-of-Benzaldehyde patches with [has-seed? = FALSE]
-  [
-    sprout-seeds 1 [
-      set color green
-      set size 1
-      set species 4
-      set shape "circle"
-      set lifespan lifespan-Benzaldehyde
-      set nectar-regeneration Benzaldehyde-nectar-regeneration
-      set start-of-bloom start-of-bloom-Benzaldehyde
-    ]
-    set has-seed? TRUE
-  ]
-end
-
-to flowers-bloom
-  ask seeds [
-    if ticks mod 5000 > start-of-bloom
-     [if random 1000 < 7
-        [hatch-a-flower
-         die]
-      ]
-  ]
-end
-
-to hatch-a-flower  ;this is a seeds routine
-  hatch-flowers 1
-     [set shape "flower"
-        set size 2
-        set flower-nectar 0
-        set age 0
-        set flower-block 20
-    set occupied false
-      ]
-end  ; end hatch-a-flower
-
-
-
-to make-nectar
-  ask flowers [
-    set age age + 1
-    if flower-nectar < 100 [
-      set flower-nectar flower-nectar + nectar-regeneration
-    ]
-  ]
-end
-
 to collect-nectar
   ask bees [
-    if chosen-flower != NOBODY [
-      let flower-occupied true
-      ask chosen-flower [set flower-occupied occupied] ; a temporary variable to reference later in the method
 
+    if chosen-flower != NOBODY [
+      let flower-occupied true ; a temporary variable to reference later in the method
+      ask chosen-flower [set flower-occupied occupied]
       if flower-occupied = false [ ;check if flower the bee is going to becomes occupied
         if distance chosen-flower < 1 [
           move-to chosen-flower
@@ -300,11 +298,8 @@ to collect-nectar
           set carry-nectar carry-nectar + [flower-nectar] of chosen-flower
           ask chosen-flower [
             set flower-nectar 0
-            ifelse color = [pollen-color] of myself
-            [if flower-seeds < flower-block [set flower-seeds flower-seeds + 1]]   ; flowers can make a max of flower-block seeds
-            [set flower-block flower-block - 1]  ; each time the wrong pollen is transmitted, a potential seed is blocked
-          ]
-          set pollen-color [color] of chosen-flower
+            set occupied true
+            ]
           set previous-flower chosen-flower
           set chosen-flower NOBODY
           set destination NOBODY
@@ -319,34 +314,15 @@ to bees-go-back-to-hive
   if any? bees[
     ask bees [
       if carry-nectar > 200 [
+
         let nectar carry-nectar ;save carry nectar to a temp variable that hives can access
         move-to home-hive ;teleport to hive
         ask home-hive [
           set storage-nectar storage-nectar + nectar
-         ; show (word "storage nectar after visit: " storage-nectar)
         ] ;deposit 200 units of nectar
         set carry-nectar  0
         set heading random 360
       ]
-    ]
-  ]
-end
-
-
-to make-bees
-  ask hives [
-    hatch-bees starting-number-of-bees [
-      set home-hive myself
-      set size 1
-      set shape "bee"
-      set age 0
-      set carry-nectar 0
-      set chosen-flower NOBODY
-      set previous-flower NOBODY
-      set destination NOBODY
-      set pollen-color black
-      set current-flower NOBODY
-      set species [species] of myself
     ]
   ]
 end
@@ -365,7 +341,6 @@ to make-new-bees
         set chosen-flower NOBODY
         set previous-flower NOBODY
         set destination NOBODY
-        set pollen-color black
         set heading random 360
         set current-flower NOBODY
         set species [species] of myself
@@ -375,7 +350,29 @@ to make-new-bees
   ]
 end
 
-;function on a given bee that reports true if the bee is currently collecting nector, flase if not
+;moving bees only of they are not currently collecting nectar
+to move-bees
+    ask bees [
+    if not collecting-nectar[
+      ifelse destination = NOBODY [right (60 - random 120)]
+      [face destination]
+      forward 1
+    ]
+  ]
+end
+
+;bees grow and die if they've live for more than 1000 ticks
+to bees-grow
+  let life 1000
+  ask bees [
+    set age age + 1
+    if age > life and random 100 < 1 [
+      die
+    ]
+  ]
+end
+
+;function on a given bee that reports true if the bee is currently collecting nector, false if not
 to-report collecting-nectar
   ifelse (current-flower = NOBODY) [
    report false
@@ -394,34 +391,20 @@ to-report collecting-nectar
   report true
 end
 
-;moving bees only of they are not currently collecting nectar
-to move-bees
-    ask bees [
-    if not collecting-nectar[
-      ifelse destination = NOBODY [right (60 - random 120)]
-      [face destination]
-      forward 1
-    ]
+to-report prob-species [spnum]
+  if species = 1 [
+  if spnum = 0 [report 0]
+  if spnum = 1 [report Bee1-Pref-Pinene]
+  if spnum = 2 [report Bee1-Pref-Limonene]
+  if spnum = 3 [report Bee1-Pref-Ocimene]
+  if spnum = 4 [report Bee1-Pref-Benzaldehyde]
   ]
-end
-
-;check if flowers should die (only if their age is greater than their lifespan)
-to flowers-breed
-  ask flowers [
-    if age > lifespan
-      [die
-      ]
-
-  ]
-end
-;bees grow and die if they've live for more than 1000 ticks
-to bees-grow
-  let life 1000
-  ask bees [
-    set age age + 1
-    if age > life and random 100 < 1 [
-      die
-    ]
+  if species = 2 [
+   if spnum = 0 [report 0]
+  if spnum = 1 [report Bee2-Pref-Pinene]
+  if spnum = 2 [report Bee2-Pref-Limonene]
+  if spnum = 3 [report Bee2-Pref-Ocimene]
+  if spnum = 4 [report Bee2-Pref-Benzaldehyde]
   ]
 end
 @#$#@#$#@
@@ -540,7 +523,7 @@ SWITCH
 536
 show-energy?
 show-energy?
-1
+0
 1
 -1000
 
@@ -581,10 +564,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-956
-204
-1194
-237
+953
+203
+1191
+236
 number-of-Benzaldehyde
 number-of-Benzaldehyde
 0
@@ -656,10 +639,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-956
-239
-1203
-272
+953
+238
+1200
+271
 Benzaldehyde-nectar-regeneration
 Benzaldehyde-nectar-regeneration
 0
@@ -716,10 +699,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-956
-273
-1194
-306
+953
+272
+1191
+305
 start-of-bloom-Benzaldehyde
 start-of-bloom-Benzaldehyde
 0
@@ -776,10 +759,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-958
-308
-1195
-341
+955
+307
+1192
+340
 lifespan-Benzaldehyde
 lifespan-Benzaldehyde
 0
@@ -978,7 +961,7 @@ bee-wait-time
 bee-wait-time
 0
 50
-5.0
+50.0
 1
 1
 NIL
@@ -1104,39 +1087,39 @@ NIL
 @#$#@#$#@
 ## WHAT IS IT?
 
-(a general understanding of what the model is trying to show or explain)
+This Simulation tests how two Species of Bees interact with different flowers based on  Bee's preferences set by the user. In addition, every 5000 ticks starts a "new season" where the flower locations reset. The flower types also bloom at different times. 
+
+This simulation also has the Bees take time to gather nectar from one flower.
 
 ## HOW IT WORKS
 
-(what rules the agents use to create the overall behavior of the model)
+Using the sliders, you can alter:
 
-## HOW TO USE IT
+Bee Vision Length and Angle
+The amount of time a bee spends on a flower.
 
-(how to use the model, including a description of each of the items in the Interface tab)
+The starting number of bees per hive
+The preference percentage each Bee has to each type of flower
+
+The starting number of each flower type
+How fast each flower type can produce nectar
+How long it takes for each flower type to bloom
+How long each flower type stays live
+
 
 ## THINGS TO NOTICE
 
-(suggested things for the user to notice while running the model)
-
-## THINGS TO TRY
-
-(suggested things for the user to try to do (move sliders, switches, etc.) with the model)
-
-## EXTENDING THE MODEL
-
-(suggested things to add or change in the Code tab to make the model more complicated, detailed, accurate, etc.)
-
-## NETLOGO FEATURES
-
-(interesting or unusual features of NetLogo that the model uses, particularly in the Code tab; or where workarounds were needed for missing features)
+What happens if the bees are too slow when collecting nectar?
 
 ## RELATED MODELS
 
-(models in the NetLogo Models Library and elsewhere which are of related interest)
+BeePhenologySim
+PollinationSim
 
 ## CREDITS AND REFERENCES
 
-(a reference to the model's URL on the web if it has one, as well as any other necessary credits, citations, and links)
+Original By Kevin
+Modifications by Daniel McDonough & Professor Ryder
 @#$#@#$#@
 default
 true

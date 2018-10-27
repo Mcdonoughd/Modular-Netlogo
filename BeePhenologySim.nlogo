@@ -1,6 +1,6 @@
 ;BeePhenologySim v1.0.1 10/16/2018
 ;This Simulation tests how two Species of Bees
-;interact with different flowers based on the Bee's preverences
+;interact with different flowers based on the Bee's preferences
 ;The flowers also bloom over time over the simulation of different seasons
 ;The flowers start as seeds and can bloom at different times
 ;Bees are produced in proportion to the amount of nectar they collect and store
@@ -22,13 +22,10 @@ turtles-own [
 
 ;attributes of Bees
 bees-own [
-  hive-location
   chosen-flower
   previous-flower
   destination
   home-hive
-  pollen-color
-  collection-start-time
   current-flower
   carry-nectar
 ]
@@ -41,8 +38,6 @@ seeds-own [
 ]
 
 flowers-own [
-  flower-seeds
-  flower-block
   lifespan
   nectar-regeneration
   flower-nectar
@@ -56,85 +51,10 @@ hives-own [
   storage-nectar
 ]
 
-to setup
-  clear-all
-  reset-ticks
-  setup-patches
-  make-seeds
-  make-hives
-end
-
-to make-hives
-  let i 1
-  repeat 2 [
-    create-hives 1 [
-      setxy random-xcor random-ycor
-      set size 5
-      set shape "beehive"
-      ifelse i = 1 [set color orange] [set color yellow]
-      set storage-nectar 0
-      set species i
-      ; additionally set the time variables for the hives that are controlled with sliders
-      ifelse i = 1 [
-        set color orange
-        set season-start Bee1-start-time
-        set season-end ((Bee1-end-time - Bee1-start-time) * Bee1-save-nectar-time-percentage) + Bee1-start-time
-      ]
-      [
-        set color yellow
-        set season-start Bee2-start-time
-        set season-end Bee2-end-time
-      ]
-      set producing-bees false
-    ]
-    set i i + 1
-  ]
-end
-
-to setup-patches
-  ask patches [
-    set pcolor green - 3
-    set has-seed? FALSE
-  ]
-end
-
-to go
-  if (ticks + 1) mod 5000 = 0 [new-season]
-  flowers-bloom
-  make-nectar
-  ask bees [
-  if chosen-flower = NOBODY [
-  choose-flower
-  ]]
-
-  ; A new implementation of how to make bees. This way, no bees will be made out of the hives specific season
-  ask hives [
-   if producing-bees = true[
-      make-new-bees
-   ]
-   if ticks mod 5000 = season-start[
-      set producing-bees true
-      make-bees
-   ]
-   if ticks mod 5000 = season-end[
-      set producing-bees false
-   ]
-  ]
-
-
-  move-bees
-  collect-nectar
-  bees-go-back-to-hive
-  flowers-breed
-  bees-grow
-  tick
-end
-
 
 ;Reset the sliders to default values
 to defaults
   set starting-number-of-bees 30
-  ;set bee-wait-time 5
   set bee-vision-length 7
   set bee-vision-degrees 45
 
@@ -143,17 +63,15 @@ to defaults
   set Bee1-Pref-Limonene 60
   set Bee1-Pref-Ocimene 35
   set Bee1-Pref-Benzaldehyde 20
-  set Bee1-start-time 500
-  set Bee1-end-time 3500
-  set Bee1-save-nectar-time-percentage 0.3
+  set Bee1-start-reproduction 500
+  set Bee1-end-reproduction 3500
 
   set Bee2-Pref-Pinene 10
   set Bee2-Pref-Limonene 60
   set Bee2-Pref-Ocimene 40
   set Bee2-Pref-Benzaldehyde 20
-  set Bee2-start-time 500
-  set Bee2-end-time 4000
-  set Bee2-save-nectar-time-percentage 0.2
+  set Bee2-start-reproduction 500
+  set Bee2-end-reproduction 4000
 
   set number-of-Pinene 100
   set number-of-Limonene 100
@@ -176,52 +94,52 @@ to defaults
   set start-of-bloom-Benzaldehyde 500
 end
 
-to new-season
-  ;remove the make-new-bees from this method
-  show "got to new season"
-  ask flowers[die]
-  ask bees [die]
+;On set up button press
+to setup
+  clear-all
+  reset-ticks
   setup-patches
   make-seeds
+  make-hives
 end
 
-to choose-flower
-; if there is a bee already on the flower, choose another. Make bee sit there for a bit.
-; check again when they get to the flower
-; call flower occupancy first
-  let temp-flower previous-flower
-  let flower-list flowers in-cone bee-vision-length bee-vision-degrees with [self != temp-flower]   ;Liz added cone-length cone-degrees and sliders
-  if any? flower-list
-  [
-    let species-seen sort remove-duplicates [species] of flower-list
-    let best-species 0
-    foreach species-seen [i -> if prob-species i > prob-species best-species
-      [set best-species i]]
-    let best-flower one-of (flower-list with [species = best-species])
-    set destination best-flower
-    set chosen-flower best-flower
-
+;set all patches to have no seeds and change the color
+to setup-patches
+  ask patches [
+    set pcolor green - 3
+    set has-seed? FALSE
   ]
 end
 
-to-report prob-species [spnum]
-  if species = 1 [
-  if spnum = 0 [report 0]
-  if spnum = 1 [report Bee1-Pref-Pinene]
-  if spnum = 2 [report Bee1-Pref-Limonene]
-  if spnum = 3 [report Bee1-Pref-Ocimene]
-  if spnum = 4 [report Bee1-Pref-Benzaldehyde]
-  ]
-  if species = 2 [
-   if spnum = 0 [report 0]
-  if spnum = 1 [report Bee2-Pref-Pinene]
-  if spnum = 2 [report Bee2-Pref-Limonene]
-  if spnum = 3 [report Bee2-Pref-Ocimene]
-  if spnum = 4 [report Bee2-Pref-Benzaldehyde]
+;make the hives for the bees
+to make-hives
+  let i 1
+  repeat 2 [
+    create-hives 1 [
+      setxy random-xcor random-ycor
+      set size 5
+      set shape "beehive"
+      ifelse i = 1 [set color orange] [set color yellow]
+      set storage-nectar 0
+      set species i
+      ; additionally set the time variables for the hives that are controlled with sliders
+      ifelse i = 1 [
+        set color orange
+        set season-start Bee1-start-reproduction
+        set season-end Bee1-end-reproduction
+      ]
+      [
+        set color yellow
+        set season-start Bee2-start-reproduction
+        set season-end Bee2-end-reproduction
+      ]
+      set producing-bees false
+    ]
+    set i i + 1
   ]
 end
 
-
+;randomly plant seeds in the area
 to make-seeds
   ask n-of number-of-Pinene patches with [has-seed? = FALSE]
     [
@@ -277,6 +195,50 @@ to make-seeds
   ]
 end
 
+;run the simulation
+to go
+  if (ticks + 1) mod 5000 = 0 [new-season]
+  flowers-bloom
+  make-nectar
+  ask bees [
+  if chosen-flower = NOBODY [
+  choose-flower
+  ]]
+
+  ; A new implementation of how to make bees. This way, no bees will be made out of the hives specific season
+  ask hives [
+   if producing-bees = true[
+      make-new-bees
+   ]
+   if ticks mod 5000 = season-start[
+      set producing-bees true
+      make-bees
+   ]
+   if ticks mod 5000 = season-end[
+      set producing-bees false
+   ]
+  ]
+
+
+  move-bees
+  collect-nectar
+  bees-go-back-to-hive
+  flowers-age
+  bees-grow
+  tick
+end
+
+;at tick 5000, kill everything and replant seeds
+to new-season
+  ;remove the make-new-bees from this method
+  show "got to new season"
+  ask flowers[die]
+  ask bees [die]
+  setup-patches
+  make-seeds
+end
+
+;spawn a flower with
 to flowers-bloom
   ask seeds [
     if ticks mod 5000 > start-of-bloom
@@ -293,11 +255,18 @@ to hatch-a-flower  ;this is a seeds routine
         set size 2
         set flower-nectar 0
         set age 0
-        set flower-block 20
       ]
 end  ; end hatch-a-flower
 
+;check if flowers should die (only if their age is greater than their lifespan)
+to flowers-age
+  ask flowers [
+    if age > lifespan
+      [die
+      ]
 
+  ]
+end
 
 to make-nectar
   ask flowers [
@@ -305,6 +274,41 @@ to make-nectar
     if flower-nectar < 100 [
       set flower-nectar flower-nectar + nectar-regeneration
     ]
+  ]
+end
+
+; Alter make-bees and make-new-bees to become hive methods instead of observer methods by removing "ask hives" and placing the calls to these methods within an "ask hives" statement
+to make-bees
+    hatch-bees starting-number-of-bees [
+      set home-hive myself
+      set size 1
+      set shape "bee"
+      set color [color] of myself
+      set age 0
+      set carry-nectar 0
+      set chosen-flower NOBODY
+      set previous-flower NOBODY
+      set destination NOBODY
+    ]
+end
+
+
+to choose-flower
+; if there is a bee already on the flower, choose another. Make bee sit there for a bit.
+; check again when they get to the flower
+; call flower occupancy first
+  let temp-flower previous-flower
+  let flower-list flowers in-cone bee-vision-length bee-vision-degrees with [self != temp-flower]   ;Liz added cone-length cone-degrees and sliders
+  if any? flower-list
+  [
+    let species-seen sort remove-duplicates [species] of flower-list
+    let best-species 0
+    foreach species-seen [i -> if prob-species i > prob-species best-species
+      [set best-species i]]
+    let best-flower one-of (flower-list with [species = best-species])
+    set destination best-flower
+    set chosen-flower best-flower
+
   ]
 end
 
@@ -318,11 +322,7 @@ to collect-nectar
         set carry-nectar carry-nectar + [flower-nectar] of chosen-flower
         ask chosen-flower [
           set flower-nectar 0
-          ifelse color = [pollen-color] of myself
-          [if flower-seeds < flower-block [set flower-seeds flower-seeds + 1]]   ; flowers can make a max of flower-block seeds
-          [set flower-block flower-block - 1]  ; each time the wrong pollen is transmitted, a potential seed is blocked
-        ]
-        set pollen-color [color] of chosen-flower
+          ]
         set previous-flower chosen-flower
         set chosen-flower NOBODY
         set destination NOBODY
@@ -330,6 +330,8 @@ to collect-nectar
     ]
   ]
 end
+
+
 
 ;have the bees teleport to the hive if they've collected over 200 units of nectar
 to bees-go-back-to-hive
@@ -345,21 +347,6 @@ end
 
 
 
-; Alter make-bees and make-new-bees to become hive methods instead of observer methods by removing "ask hives" and placing the calls to these methods within an "ask hives" statement
-to make-bees
-    hatch-bees starting-number-of-bees [
-      set home-hive myself
-      set size 1
-      set shape "bee"
-    set color [color] of myself
-      set age 0
-      set carry-nectar 0
-      set chosen-flower NOBODY
-      set previous-flower NOBODY
-      set destination NOBODY
-      set pollen-color black
-    ]
-end
 
 ;Have hives make new bees when nectar is above the threshhold and is the right season
 to make-new-bees
@@ -369,13 +356,12 @@ to make-new-bees
         set home-hive myself
         set size 1
         set shape "bee"
-      set color [color] of myself
+        set color [color] of myself
         set age 0
         set carry-nectar 0
         set chosen-flower NOBODY
         set previous-flower NOBODY
         set destination NOBODY
-        set pollen-color black
         set heading random 360
       ]
     ]
@@ -390,15 +376,6 @@ to move-bees
   ]
 end
 
-;check if flowers should die (only if their age is greater than their lifespan)
-to flowers-breed
-  ask flowers [
-    if age > lifespan
-      [die
-      ]
-
-  ]
-end
 
 ;bees grow and die if they've live for more than 1000 ticks
 to bees-grow
@@ -410,6 +387,25 @@ to bees-grow
     ]
   ]
 end
+
+
+to-report prob-species [spnum]
+  if species = 1 [
+  if spnum = 0 [report 0]
+  if spnum = 1 [report Bee1-Pref-Pinene]
+  if spnum = 2 [report Bee1-Pref-Limonene]
+  if spnum = 3 [report Bee1-Pref-Ocimene]
+  if spnum = 4 [report Bee1-Pref-Benzaldehyde]
+  ]
+  if species = 2 [
+   if spnum = 0 [report 0]
+  if spnum = 1 [report Bee2-Pref-Pinene]
+  if spnum = 2 [report Bee2-Pref-Limonene]
+  if spnum = 3 [report Bee2-Pref-Ocimene]
+  if spnum = 4 [report Bee2-Pref-Benzaldehyde]
+  ]
+end
+
 @#$#@#$#@
 GRAPHICS-WINDOW
 279
@@ -635,7 +631,7 @@ Ocimene-nectar-regeneration
 Ocimene-nectar-regeneration
 0
 10
-5.0
+6.0
 1
 1
 NIL
@@ -781,7 +777,7 @@ PLOT
 553
 1118
 703
-Mean Flower Nectar Content
+Total Flower Nectar Content
 time
 nectar
 0.0
@@ -792,10 +788,10 @@ true
 true
 "" ""
 PENS
-"Pinene" 1.0 0 -1184463 true "" "let fl1 count flowers with [species = 1]\nifelse fl1 > 1 \n[plotxy ticks mean [flower-nectar] of flowers with [species = 1]\nplot-pen-down]\n[plot-pen-up]"
-"Limonene" 1.0 0 -2674135 true "" "let fl1 count flowers with [species = 2]\nifelse fl1 > 1 \n[plotxy ticks mean [flower-nectar] of flowers with [species = 2]\nplot-pen-down]\n[plot-pen-up]"
-"Ocimene" 1.0 0 -11221820 true "" "let fl1 count flowers with [species = 3]\nifelse fl1 > 1 \n[plotxy ticks mean [flower-nectar] of flowers with [species = 3]\nplot-pen-down]\n[plot-pen-up]"
-"Benzaldehyde" 1.0 0 -10899396 true "" "let fl1 count flowers with [species = 4]\nifelse fl1 > 1 \n[plotxy ticks mean [flower-nectar] of flowers with [species = 4]\nplot-pen-down]\n[plot-pen-up]"
+"Pinene" 1.0 0 -1184463 true "" "let fl1 count flowers with [species = 1]\nifelse fl1 > 1 \n[plotxy ticks sum [flower-nectar] of flowers with [species = 1]\nplot-pen-down]\n[plot-pen-up]"
+"Limonene" 1.0 0 -2674135 true "" "let fl1 count flowers with [species = 2]\nifelse fl1 > 1 \n[plotxy ticks sum [flower-nectar] of flowers with [species = 2]\nplot-pen-down]\n[plot-pen-up]"
+"Ocimene" 1.0 0 -11221820 true "" "let fl1 count flowers with [species = 3]\nifelse fl1 > 1 \n[plotxy ticks sum [flower-nectar] of flowers with [species = 3]\nplot-pen-down]\n[plot-pen-up]"
+"Benzaldehyde" 1.0 0 -10899396 true "" "let fl1 count flowers with [species = 4]\nifelse fl1 > 1 \n[plotxy ticks sum [flower-nectar] of flowers with [species = 4]\nplot-pen-down]\n[plot-pen-up]"
 
 SLIDER
 4
@@ -960,8 +956,8 @@ SLIDER
 259
 269
 292
-Bee1-start-time
-Bee1-start-time
+Bee1-start-reproduction
+Bee1-start-reproduction
 0
 1000
 500.0
@@ -975,8 +971,8 @@ SLIDER
 543
 282
 576
-Bee2-start-time
-Bee2-start-time
+Bee2-start-reproduction
+Bee2-start-reproduction
 0
 1000
 500.0
@@ -990,8 +986,8 @@ SLIDER
 296
 270
 329
-Bee1-end-time
-Bee1-end-time
+Bee1-end-reproduction
+Bee1-end-reproduction
 1000
 5000
 3500.0
@@ -1005,42 +1001,12 @@ SLIDER
 579
 284
 612
-Bee2-end-time
-Bee2-end-time
+Bee2-end-reproduction
+Bee2-end-reproduction
 1000
 5000
 4000.0
 100
-1
-NIL
-HORIZONTAL
-
-SLIDER
-4
-330
-277
-363
-Bee1-save-nectar-time-percentage
-Bee1-save-nectar-time-percentage
-0
-1
-0.3
-.01
-1
-NIL
-HORIZONTAL
-
-SLIDER
-8
-617
-283
-650
-Bee2-save-nectar-time-percentage
-Bee2-save-nectar-time-percentage
-0
-1
-0.2
-.01
 1
 NIL
 HORIZONTAL
@@ -1165,39 +1131,40 @@ Benzaldehyde Variables
 @#$#@#$#@
 ## WHAT IS IT?
 
-(a general understanding of what the model is trying to show or explain)
+This Simulation tests how two Species of Bees interact with different flowers based on  Bee's preferences set by the user. In addition, every 5000 ticks starts a "new season" where the flower locations reset. The flower types also bloom at different times.
+
+This simulation also allows the bee population to be proportional to the amount of nectar they collect the previous season.
 
 ## HOW IT WORKS
 
-(what rules the agents use to create the overall behavior of the model)
+Using the sliders, you can alter:
 
-## HOW TO USE IT
+Bee Vision Length and Angle
+Bee start and end time for collecting nectar (2 for each Bee type)
 
-(how to use the model, including a description of each of the items in the Interface tab)
+The starting number of bees per hive
+The preference percentage each Bee has to each type of flower
+
+The starting number of each flower type
+How fast each flower type can produce nectar
+How long it takes for each flower type to bloom
+How long each flower type stays live
+
 
 ## THINGS TO NOTICE
 
-(suggested things for the user to notice while running the model)
-
-## THINGS TO TRY
-
-(suggested things for the user to try to do (move sliders, switches, etc.) with the model)
-
-## EXTENDING THE MODEL
-
-(suggested things to add or change in the Code tab to make the model more complicated, detailed, accurate, etc.)
-
-## NETLOGO FEATURES
-
-(interesting or unusual features of NetLogo that the model uses, particularly in the Code tab; or where workarounds were needed for missing features)
+What happens at after each season?
+Is it possible that one type of Bee dies out but the other survive?
 
 ## RELATED MODELS
 
-(models in the NetLogo Models Library and elsewhere which are of related interest)
+OccupiedSim
+PollinationSim
 
 ## CREDITS AND REFERENCES
 
-(a reference to the model's URL on the web if it has one, as well as any other necessary credits, citations, and links)
+Original By Kevin
+Modifications by Daniel McDonough & Professor Ryder
 @#$#@#$#@
 default
 true
