@@ -1,4 +1,4 @@
-;CompleteSim v1.0.2 10/15/2018
+;CompleteSim v1.0.4 10/31/2018
 ;This Simulation is a combination of Occuppied, Phenology, and Pollination simulations.
 
 
@@ -89,10 +89,10 @@ to defaults
   set number-of-Ocimene 50
   set number-of-Benzaldehyde 50
 
-  set Pinene-nectar-regeneration 10
-  set Limonene-nectar-regeneration 8
-  set Ocimene-nectar-regeneration 5
-  set Benzaldehyde-nectar-regeneration 5
+  set Pinene-nectar-regeneration 1
+  set Limonene-nectar-regeneration 1
+  set Ocimene-nectar-regeneration 1
+  set Benzaldehyde-nectar-regeneration 1
 
   set lifespan-Pinene 2500
   set lifespan-Limonene 2500
@@ -507,8 +507,6 @@ to-report prob-species [spnum]
   if spnum = 4 [report Bee2-Pref-Benzaldehyde]
   ]
 end
-
-
 @#$#@#$#@
 GRAPHICS-WINDOW
 302

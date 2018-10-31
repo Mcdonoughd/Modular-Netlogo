@@ -1,4 +1,4 @@
-;Pollination v1.0.0 10/20/2018
+;Pollination v1.0.3 10/20/2018
 ;This Simulation tests how two Species of Bees
 ;interact with different flowers based on the Bee's preferences
 ;The flowers also bloom over time over the simulation of different seasons
@@ -70,19 +70,19 @@ to defaults
   set number-of-Ocimene 100
   set number-of-Benzaldehyde 100
 
-  set Pinene-nectar-regeneration 10
-  set Limonene-nectar-regeneration 8
-  set Ocimene-nectar-regeneration 5
-  set Benzaldehyde-nectar-regeneration 5
+  set Pinene-nectar-regeneration 1
+  set Limonene-nectar-regeneration 1
+  set Ocimene-nectar-regeneration 1
+  set Benzaldehyde-nectar-regeneration 1
 
-  set lifespan-Pinene 2500
-  set lifespan-Limonene 2500
-  set lifespan-Ocimene 2500
-  set lifespan-Benzaldehyde 2500
+  set lifespan-Pinene 3500
+  set lifespan-Limonene 3500
+  set lifespan-Ocimene 3500
+  set lifespan-Benzaldehyde 3500
 
-  set start-of-bloom-Pinene 3000
+  set start-of-bloom-Pinene 1000
   set start-of-bloom-Limonene 1000
-  set start-of-bloom-Ocimene 3000
+  set start-of-bloom-Ocimene 500
   set start-of-bloom-Benzaldehyde 500
 
   set percent-seed-death 0.25
@@ -429,7 +429,6 @@ to-report prob-species [spnum]
   if spnum = 4 [report Bee2-Pref-Benzaldehyde]
   ]
 end
-
 @#$#@#$#@
 GRAPHICS-WINDOW
 268
@@ -625,7 +624,7 @@ Pinene-nectar-regeneration
 Pinene-nectar-regeneration
 0
 10
-10.0
+1.0
 1
 1
 NIL
@@ -640,7 +639,7 @@ Limonene-nectar-regeneration
 Limonene-nectar-regeneration
 0
 10
-8.0
+1.0
 1
 1
 NIL
@@ -655,7 +654,7 @@ Ocimene-nectar-regeneration
 Ocimene-nectar-regeneration
 0
 10
-5.0
+1.0
 1
 1
 NIL
@@ -670,7 +669,7 @@ Benzaldehyde-nectar-regeneration
 Benzaldehyde-nectar-regeneration
 0
 10
-5.0
+1.0
 1
 1
 NIL
@@ -685,7 +684,7 @@ start-of-bloom-Pinene
 start-of-bloom-Pinene
 0
 4000
-3000.0
+1000.0
 100
 1
 NIL
@@ -715,7 +714,7 @@ start-of-bloom-Ocimene
 start-of-bloom-Ocimene
 0
 4000
-3000.0
+500.0
 100
 1
 NIL
@@ -744,8 +743,8 @@ SLIDER
 lifespan-Pinene
 lifespan-Pinene
 0
-3000
-2500.0
+5000
+3500.0
 100
 1
 NIL
@@ -759,8 +758,8 @@ SLIDER
 lifespan-Limonene
 lifespan-Limonene
 0
-3000
-2500.0
+5000
+3500.0
 100
 1
 NIL
@@ -774,8 +773,8 @@ SLIDER
 lifespan-Ocimene
 lifespan-Ocimene
 0
-3000
-2500.0
+5000
+3500.0
 100
 1
 NIL
@@ -789,8 +788,8 @@ SLIDER
 lifespan-Benzaldehyde
 lifespan-Benzaldehyde
 0
-3000
-2500.0
+5000
+3500.0
 100
 1
 NIL
