@@ -43,7 +43,6 @@ seeds-own [
 ;attributes of flowers
 flowers-own [
   flower-seeds
-  flower-block
   lifespan
   nectar-regeneration
   start-of-bloom
@@ -67,8 +66,8 @@ to defaults
   set bee-wait-time 5
   set bee-vision-length 7
   set bee-vision-degrees 45
-  set max-bees 500
   set bee-lifetime 1000
+  set max-bees 600
 
   set Bee1-Pref-Pinene 80
   set Bee1-Pref-Limonene 60
@@ -94,10 +93,10 @@ to defaults
   set Ocimene-nectar-regeneration 1
   set Benzaldehyde-nectar-regeneration 1
 
-  set lifespan-Pinene 2500
-  set lifespan-Limonene 2500
-  set lifespan-Ocimene 2500
-  set lifespan-Benzaldehyde 2500
+  set lifespan-Pinene 3500
+  set lifespan-Limonene 3500
+  set lifespan-Ocimene 3500
+  set lifespan-Benzaldehyde 3500
 
   set start-of-bloom-Pinene 1000
   set start-of-bloom-Limonene 1000
@@ -107,7 +106,7 @@ to defaults
 
   set percent-seed-death 0.25
   set seeds-fall-radius 5
-  set max-flowers 600
+  set max-flowers 1200
 
 end
 
@@ -129,7 +128,6 @@ to setup-patches
   ]
   ask patches [
     set pcolor green - 3
-    kill-seeds
   ]
 
 end
@@ -139,7 +137,7 @@ to make-hives
   let i 1
   repeat 2 [
     create-hives 1 [
-      setxy random-xcor random-ycor
+      ifelse i = 2 [setxy 15 15][setxy -15 -15] ;have the hives evenly spaced in the environment
       set size 5
       set shape "beehive"
       ifelse i = 1 [set color orange] [set color yellow]
@@ -260,15 +258,27 @@ to new-season
   show "got to new season"
   ask flowers[die]
   ask bees [die]
-  ask n-of (count seeds * percent-seed-death) seeds [die] ; Kills a certain amount of random seeds at the start of the season
   setup-patches
+  kill-seeds
   make-new-bees
 end
 
 ;New method to remove extra seeds
 to kill-seeds
-  if count seeds-here > 1 [
-    ask n-of (count seeds-here - 1) seeds-here [die]
+  ;note the n-of function :
+  ;From an agentset, reports an agentset of size size randomly chosen from the input set, with no repeats.
+  ;From a list, reports a list of size size randomly chosen from the input set, with no repeats.
+  ;The items in the result appear in the same order that they appeared in the input list.
+  ;(If you want them in random order, use shuffle on the result.)
+
+
+  ask n-of (count seeds * percent-seed-death) seeds [die] ; Kills a certain amount of random seeds at the start of the season
+
+  ;to prevent removing
+  ask patches[
+    if count seeds-here > 1 [
+      ask n-of (count seeds-here - 1) seeds-here [die]
+    ]
   ]
 end
 
@@ -290,18 +300,15 @@ end
 
 ;make a flower appear
 to hatch-a-flower  ;this is a seeds routine whereas features like nectar regen is passed down
-  if count flowers < max-flowers[ ;check if artificial cap has been reached
     if not any? flowers in-radius 1 [ ; If a flower has already bloomed next to the seed, the seed will not bloom into a new flower
       hatch-flowers 1
       [set shape "flower"
         set size 2
         set flower-nectar 0
         set age 0
-        set flower-block 20
         set occupied false
       ]
     ]
-  ]
 end  ; end hatch-a-flower
 
 ;have the flowers die and sprout seeds
@@ -394,14 +401,12 @@ to collect-nectar
           set current-species (species - 1)
           set flower-nectar 0
 
-          ifelse random 50 < (item current-species bee-pollen)   ; The pollen values stored by the bee are the chance of that species flower being pollinated by the bee
-          [if flower-seeds < flower-block [set flower-seeds flower-seeds + 1]]   ; flowers can make a max of flower-block seeds
-          [set flower-block flower-block - 1]  ; each time the wrong pollen is transmitted, a potential seed is blocked
-
+            if random (sum bee-pollen) <= (item current-species bee-pollen)[   ; The pollen values stored by the bee are the chance of that species flower being pollinated by the bee
+              set flower-seeds flower-seeds + 1
+          ]
         ]
 
-        set pollen replace-item current-species pollen 10 ; Refills the bee's pollen value of that specific species of flower
-
+        set pollen replace-item current-species bee-pollen (item current-species bee-pollen + 1); Refills the bee's pollen value of that specific species of flower
         set previous-flower chosen-flower
         set chosen-flower NOBODY
         set destination NOBODY
@@ -418,6 +423,7 @@ to bees-go-back-to-hive
       move-to home-hive
       ask home-hive [ set storage-nectar storage-nectar + 200 ]
       set carry-nectar carry-nectar - 200
+      set pollen [0 0 0 0]
       set heading random 360
     ]
   ]
@@ -425,12 +431,10 @@ end
 
 ;make new bees if the hive can "afford" it
 to make-new-bees
-
   ask hives [
-
     while [storage-nectar > 2500 and ticks mod 5000 < season-end] [
       set storage-nectar storage-nectar - 2500
-      if count bees < max-bees[ ;check if bees reach the sim capasity
+
         hatch-bees 1 [
           set home-hive myself
           set size 1
@@ -444,7 +448,7 @@ to make-new-bees
           set pollen [ 0 0 0 0 ]
           set current-flower NOBODY
         ]
-      ]
+
     ]
   ]
 end
@@ -628,10 +632,10 @@ show-energy?
 -1000
 
 PLOT
-1237
-330
-1582
-480
+1239
+11
+1584
+161
 Flower Population
 Time
 Number of Flowers
@@ -702,7 +706,7 @@ Pinene-nectar-regeneration
 Pinene-nectar-regeneration
 0
 10
-10.0
+1.0
 1
 1
 NIL
@@ -717,7 +721,7 @@ Limonene-nectar-regeneration
 Limonene-nectar-regeneration
 0
 10
-8.0
+1.0
 1
 1
 NIL
@@ -732,7 +736,7 @@ Ocimene-nectar-regeneration
 Ocimene-nectar-regeneration
 0
 10
-5.0
+1.0
 1
 1
 NIL
@@ -747,7 +751,7 @@ Benzaldehyde-nectar-regeneration
 Benzaldehyde-nectar-regeneration
 0
 10
-5.0
+1.0
 1
 1
 NIL
@@ -821,8 +825,8 @@ SLIDER
 lifespan-Pinene
 lifespan-Pinene
 0
-3000
-2500.0
+5000
+3500.0
 100
 1
 NIL
@@ -836,8 +840,8 @@ SLIDER
 lifespan-Limonene
 lifespan-Limonene
 0
-3000
-2500.0
+5000
+3500.0
 100
 1
 NIL
@@ -851,8 +855,8 @@ SLIDER
 lifespan-Ocimene
 lifespan-Ocimene
 0
-3000
-2500.0
+5000
+3500.0
 100
 1
 NIL
@@ -866,8 +870,8 @@ SLIDER
 lifespan-Benzaldehyde
 lifespan-Benzaldehyde
 0
-3000
-2500.0
+5000
+3500.0
 100
 1
 NIL
@@ -955,10 +959,10 @@ NIL
 HORIZONTAL
 
 PLOT
-1237
-493
-1582
-643
+1236
+324
+1581
+474
 Bee Population
 Time
 Number of Bees
@@ -1034,10 +1038,10 @@ NIL
 HORIZONTAL
 
 PLOT
-1236
-10
-1585
-160
+1235
+479
+1584
+629
 Hive Nectar 
 NIL
 NIL
@@ -1287,20 +1291,35 @@ Common Flower Variables
 SLIDER
 759
 558
-976
+974
 591
-max-bees
-max-bees
-0
-500
-500.0
-1
+bee-lifetime
+bee-lifetime
+10
+1000
+1000.0
+50
 1
 NIL
 HORIZONTAL
 
 SLIDER
-999
+760
+597
+974
+630
+max-bees
+max-bees
+0
+600
+600.0
+100
+1
+NIL
+HORIZONTAL
+
+SLIDER
+998
 493
 1219
 526
@@ -1308,23 +1327,8 @@ max-flowers
 max-flowers
 0
 1200
-600.0
-1
-1
-NIL
-HORIZONTAL
-
-SLIDER
-759
-595
-974
-628
-bee-lifetime
-bee-lifetime
-10
-1000
-1000.0
-50
+1200.0
+100
 1
 NIL
 HORIZONTAL

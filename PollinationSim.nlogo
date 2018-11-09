@@ -1,4 +1,4 @@
-;Pollination v1.0.3 10/20/2018
+;Pollination v1.0.5 11/4/2018
 ;This Simulation tests how two Species of Bees
 ;interact with different flowers based on the Bee's preferences
 ;The flowers also bloom over time over the simulation of different seasons
@@ -36,7 +36,6 @@ seeds-own [
 
 flowers-own [
   flower-seeds
-  flower-block
   lifespan
   nectar-regeneration
   start-of-bloom
@@ -51,7 +50,6 @@ hives-own [storage-nectar]
 ;Reset the sliders to default values
 to defaults
   set starting-number-of-bees 30
-  ;set bee-wait-time 5
   set bee-vision-length 7
   set bee-vision-degrees 45
 
@@ -65,10 +63,10 @@ to defaults
   set Bee2-Pref-Ocimene 40
   set Bee2-Pref-Benzaldehyde 20
 
-  set number-of-Pinene 100
-  set number-of-Limonene 100
-  set number-of-Ocimene 100
-  set number-of-Benzaldehyde 100
+  set number-of-Pinene 50
+  set number-of-Limonene 50
+  set number-of-Ocimene 50
+  set number-of-Benzaldehyde 50
 
   set Pinene-nectar-regeneration 1
   set Limonene-nectar-regeneration 1
@@ -110,7 +108,6 @@ to setup-patches
   ]
   ask patches [
     set pcolor green - 3
-    kill-seeds
   ]
 
 end
@@ -120,7 +117,7 @@ to make-hives
   let i 1
   repeat 2 [
     create-hives 1 [
-      setxy random-xcor random-ycor
+      ifelse i = 2 [setxy 15 15][setxy -15 -15] ;have the hives evenly spaced in the environment
       set size 5
       set shape "beehive"
       ifelse i = 2 [set color yellow] [set color orange]
@@ -216,15 +213,27 @@ to new-season
   show "got to new season"
   ask flowers[die]
   ask bees [die]
-  ask n-of (count seeds * percent-seed-death) seeds [die] ; Kills a certain amount of random seeds at the start of the season
   setup-patches
+  kill-seeds
   make-new-bees
 end
 
 ;New method to remove extra seeds
 to kill-seeds
-  if count seeds-here > 1 [
-    ask n-of (count seeds-here - 1) seeds-here [die]
+  ;note the n-of function :
+  ;From an agentset, reports an agentset of size size randomly chosen from the input set, with no repeats.
+  ;From a list, reports a list of size size randomly chosen from the input set, with no repeats.
+  ;The items in the result appear in the same order that they appeared in the input list.
+  ;(If you want them in random order, use shuffle on the result.)
+
+
+  ask n-of (count seeds * percent-seed-death) seeds [die] ; Kills a certain amount of random seeds at the start of the season
+
+  ;to prevent removing
+  ask patches[
+    if count seeds-here > 1 [
+      ask n-of (count seeds-here - 1) seeds-here [die]
+    ]
   ]
 end
 
@@ -252,7 +261,6 @@ to hatch-a-flower  ;this is a seeds routine whereas features like nectar regen i
       set size 2
       set flower-nectar 0
       set age 0
-      set flower-block 20
     ]
   ]
 end  ; end hatch-a-flower
@@ -263,8 +271,16 @@ to flowers-age
     set age age + 1
     if age > lifespan
       [
-        let x xcor
-        let y ycor
+        flowers-pollinate
+        die
+      ]
+  ]
+end
+
+;have flowers pollinate
+to flowers-pollinate
+  let x xcor
+   let y ycor
         hatch-seeds flower-seeds [
          ; Drops the seeds in a certain radius around the flower determined by the user
          setxy x + (random seeds-fall-radius - (seeds-fall-radius / 2)) y + (random seeds-fall-radius - (seeds-fall-radius / 2))
@@ -273,10 +289,8 @@ to flowers-age
          set size 1
          set hidden? true
         ]
-        die
-      ]
-  ]
 end
+
 
 ;have flowers make nectar
 to make-nectar
@@ -339,14 +353,14 @@ to collect-nectar
           set current-species (species - 1)
           set flower-nectar 0
 
-          ifelse random 50 < (item current-species bee-pollen)   ; The pollen values stored by the bee are the chance of that species flower being pollinated by the bee
-          [if flower-seeds < flower-block [set flower-seeds flower-seeds + 1]]   ; flowers can make a max of flower-block seeds
-          [set flower-block flower-block - 1]  ; each time the wrong pollen is transmitted, a potential seed is blocked
 
+            if random (sum bee-pollen) <= (item current-species bee-pollen)[   ; The pollen values stored by the bee are the chance of that species flower being pollinated by the bee
+              set flower-seeds flower-seeds + 1
+
+          ]
         ]
 
-        set pollen replace-item current-species pollen 10 ; Refills the bee's pollen value of that specific species of flower
-
+        set pollen replace-item current-species bee-pollen (item current-species bee-pollen + 1); Refills the bee's pollen value of that specific species of flower
         set previous-flower chosen-flower
         set chosen-flower NOBODY
         set destination NOBODY
@@ -363,6 +377,7 @@ to bees-go-back-to-hive
       move-to home-hive
       ask home-hive [ set storage-nectar storage-nectar + 200 ]
       set carry-nectar carry-nectar - 200
+      set pollen [0 0 0 0]
       set heading random 360
     ]
   ]
@@ -371,7 +386,6 @@ end
 ;make new bees if the hive can "afford" it
 to make-new-bees
   ask hives [
-
     while [storage-nectar > 2500 and ticks mod 5000 < 4000] [
       set storage-nectar storage-nectar - 2500
       hatch-bees 1 [
@@ -500,7 +514,7 @@ number-of-Pinene
 number-of-Pinene
 0
 100
-100.0
+50.0
 1
 1
 NIL
@@ -579,7 +593,7 @@ number-of-Limonene
 number-of-Limonene
 0
 100
-100.0
+50.0
 1
 1
 NIL
@@ -594,7 +608,7 @@ number-of-Benzaldehyde
 number-of-Benzaldehyde
 0
 100
-100.0
+50.0
 1
 1
 NIL
@@ -609,16 +623,16 @@ number-of-Ocimene
 number-of-Ocimene
 0
 100
-100.0
+50.0
 1
 1
 NIL
 HORIZONTAL
 
 SLIDER
-725
+732
 67
-942
+943
 100
 Pinene-nectar-regeneration
 Pinene-nectar-regeneration
